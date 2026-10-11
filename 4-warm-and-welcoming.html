@@ -5,122 +5,266 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Design 4: Warm and Welcoming | Derryn Holliday demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&amp;display=swap">
 <style>
-body{margin:0;background:#F4F7FB}
+:root{--terra:#B4472A;--terra-dk:#8E3519;--ink:#1E2A3B;--body:#3E4B5E;--muted:#556274;--sky:#F4F7FB;--sky2:#DCE6F2;--line:#D3DCE7;--peach:#FBEDE7}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--sky);color:var(--ink);font:19px/1.65 Lexend,system-ui,sans-serif}
+img{max-width:100%;height:auto;display:block}
 a{color:#A9431F}a:hover{color:#7E3015}
-.wrap{max-width:1160px;margin:0 auto;padding:0 32px;box-sizing:border-box}
-.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;align-items:center}
+:focus-visible{outline:4px solid #E08A6F;outline-offset:3px;border-radius:8px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+.sec{padding:96px 0}
+.white{background:#fff}
+.h2{font-weight:700;font-size:clamp(30px,3.6vw,40px);line-height:1.2;margin:0 0 14px}
+.intro{color:var(--body);max-width:640px;margin:0 0 44px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:14px 26px;border-radius:16px;font:600 18px/1.2 Lexend,sans-serif;text-decoration:none;transition:background .15s,border-color .15s}
+.btn-p{background:var(--terra);color:#fff}.btn-p:hover{background:var(--terra-dk);color:#fff}
+.btn-s{background:#fff;color:var(--ink);border:2px solid var(--line)}.btn-s:hover{border-color:var(--terra);color:var(--ink)}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px;align-items:center}
 .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-@media (max-width:860px){.g2,.g3{grid-template-columns:1fr;gap:20px}.hide-sm{display:none}.wrap{padding:0 16px}}
-details summary{cursor:pointer;list-style:none}
-details summary::-webkit-details-marker{display:none}
+
+header{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 1px 0 var(--line)}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:76px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:21px;color:var(--ink);text-decoration:none}
+.brand span{font-weight:400;color:var(--muted)}
+.hright{display:flex;gap:12px;align-items:center}
+.call{display:inline-flex;align-items:center;gap:8px;color:var(--ink);text-decoration:none;font-weight:500;min-height:48px;padding:0 8px}
+.call:hover{color:var(--terra)}
+.hright .btn{min-height:48px;padding:10px 22px;font-size:17px}
+
+.hero{padding:72px 0 88px}
+.hero h1{font-weight:700;font-size:clamp(40px,5vw,58px);line-height:1.12;margin:0 0 20px;letter-spacing:-.01em}
+.hero .sub{margin:0 0 32px;color:var(--body);font-size:21px;max-width:520px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px}
+.reassure{display:flex;flex-wrap:wrap;gap:10px 24px;margin:28px 0 0;padding:0;list-style:none;color:var(--body);font-size:17px}
+.reassure li{display:flex;gap:8px;align-items:center}
+.reassure svg{color:var(--terra);flex:none}
+.pwrap{position:relative;max-width:500px;margin-left:auto}
+.pwrap::before{content:"";position:absolute;inset:-18px -18px auto auto;width:42%;aspect-ratio:1;border-radius:50%;background:var(--peach);z-index:0}
+.pwrap img{position:relative;z-index:1;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top;border-radius:50%;background:var(--sky2)}
+.pbadge{position:absolute;z-index:2;left:0;bottom:24px;background:#fff;border-radius:18px;padding:16px 20px;box-shadow:0 10px 30px rgba(30,42,59,.12)}
+.pbadge b{display:block;font-size:20px}
+.pbadge span{font-size:15px;color:var(--muted)}
+
+.what{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:48px;align-items:center;background:#fff;border-radius:28px;padding:48px}
+.what p{color:var(--body);margin:0}
+.what ul{margin:0;padding:0;list-style:none;display:grid;gap:14px}
+.what li{display:flex;gap:14px;align-items:flex-start;background:var(--sky);border-radius:16px;padding:16px 18px}
+.what li b{display:block}
+.what li small{display:block;color:var(--muted);font-size:17px}
+.num{flex:none;width:32px;height:32px;border-radius:50%;background:var(--peach);color:var(--terra-dk);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+
+.step{background:var(--sky);border-radius:22px;padding:30px}
+.step .n{width:52px;height:52px;border-radius:50%;background:var(--terra);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;margin-bottom:18px}
+.step h3{font-weight:600;font-size:22px;margin:0 0 6px}
+.step p{margin:0;color:var(--body)}
+
+.help{display:flex;gap:16px;align-items:flex-start;background:#fff;border-radius:22px;padding:26px;text-decoration:none;color:var(--ink);border:2px solid transparent;transition:border-color .15s}
+.help:hover{border-color:var(--terra);color:var(--ink)}
+.help .ico{flex:none;width:48px;height:48px;border-radius:14px;background:var(--peach);color:var(--terra-dk);display:flex;align-items:center;justify-content:center}
+.help h3{font-weight:600;font-size:21px;margin:0}
+.help p{color:var(--muted);font-size:17px;margin:4px 0 0}
+.note{margin:32px 0 0;background:var(--peach);border-radius:20px;padding:22px 26px;color:var(--ink)}
+
+.about img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:28px}
+.about p{margin:0 0 14px;color:var(--body)}
+
+details.faq{background:#fff;border-radius:18px;margin-bottom:12px}
+details.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px;font-weight:600;min-height:64px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";flex:none;width:36px;height:36px;border-radius:50%;background:var(--sky);color:var(--terra);display:flex;align-items:center;justify-content:center;font-size:24px;line-height:1;transition:transform .2s}
+details.faq[open] summary::after{transform:rotate(45deg)}
+details.faq p{margin:0;padding:0 26px 22px;color:var(--body)}
+
+.docs{background:var(--ink);color:#fff;padding:72px 0}
+.docs p{margin:0;color:#C3CCD8}
+.btn-w{background:#fff;color:var(--ink)}.btn-w:hover{background:#EEF2F7;color:var(--ink)}
+.btn-wo{border:2px solid #8B98AA;color:#fff}.btn-wo:hover{border-color:#fff;color:#fff}
+
+.visit{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:32px;align-items:stretch}
+.vcard{background:#fff;border-radius:28px;padding:36px;display:grid;gap:22px;align-content:start}
+.vcard h3{font-size:16px;font-weight:600;color:var(--terra-dk);margin:0 0 4px;text-transform:uppercase;letter-spacing:.08em}
+.vcard div div{color:var(--body)}
+.bigcall{display:flex;align-items:center;gap:14px;background:var(--peach);border-radius:18px;padding:16px 20px;text-decoration:none;color:var(--ink)}
+.bigcall b{display:block;font-size:24px}
+.bigcall span{font-size:15px;color:var(--muted)}
+.bigcall:hover{color:var(--ink);background:#F7DED3}
+.map{width:100%;height:100%;min-height:420px;border:0;border-radius:28px;background:var(--sky2)}
+
+footer{padding:48px 0 40px;background:#fff;border-top:1px solid var(--line)}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;font-size:17px;color:var(--body)}
+.fg h4{font-weight:600;color:var(--ink);margin:0 0 8px;font-size:17px}
+.fg ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.fbot{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font-size:15px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+.mcta{display:none}
+@media (max-width:980px){.what,.visit{grid-template-columns:1fr}.what{padding:32px}}
+@media (max-width:860px){
+ .wrap{padding:0 16px}.sec{padding:64px 0}
+ .g2,.g3{grid-template-columns:1fr;gap:20px}
+ .hero{padding:36px 0 56px;overflow:hidden}.hero .g2{gap:40px}
+ .pwrap{margin:0 auto;max-width:340px}
+ .call .t,.brand span{display:none}
+ .what{padding:24px;border-radius:22px}
+ .map{min-height:320px}
+ .vcard{padding:26px}
+ .fg{grid-template-columns:1fr}
+ .mcta{display:grid;grid-template-columns:1fr 1.4fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:60;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#fff;box-shadow:0 -4px 20px rgba(30,42,59,.12)}
+ .mcta .btn{min-height:52px;padding:8px;font-size:16px;border-radius:14px}
+ body{padding-bottom:76px}
+ #demo-bar{bottom:88px !important}
+}
+@media (max-width:560px){.call{display:none}.brand{font-size:18px;gap:10px;white-space:nowrap}.brand img{width:34px;height:34px}.hright{gap:4px}.hright .btn{white-space:nowrap;padding:10px 16px;font-size:16px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none !important}}
 </style>
 </head>
 <body>
-<div style="font-family: Lexend, system-ui, sans-serif; color: #1E2A3B; font-size: 19px; line-height: 1.65; background: #F4F7FB">
 
-<header style="background: #FFFFFF">
-<div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-top: 18px; padding-bottom: 18px">
-<div style="font-weight: 700; font-size: 21px; display: flex; align-items: center; gap: 12px"><img src="images/logo.webp" alt="" width="40" height="40">Derryn Holliday <span style="font-weight: 400; color: #556274">· Biokineticist</span></div>
-<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
-<a href="tel:+27835562149" class="hide-sm" style="color: #1E2A3B; text-decoration: none; font-weight: 500">Call 083 556 2149</a>
-<a href="https://book.appt.guru/?s=2192" style="background: #B4472A; color: #FFFFFF; text-decoration: none; padding: 12px 22px; border-radius: 14px; font-weight: 600; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center">Book a visit</a>
+<header>
+<div class="wrap hd">
+<a class="brand" href="#top"><img src="images/logo.webp" alt="" width="40" height="40">Derryn Holliday <span>&middot; Biokineticist</span></a>
+<div class="hright">
+<a class="call" href="tel:+27835562149" aria-label="Call 083 556 2149"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.8 2z"/></svg><span class="t">083 556 2149</span></a>
+<a class="btn btn-p" href="https://book.appt.guru/?s=2192">Book a visit</a>
 </div>
 </div>
 </header>
 
-<section style="padding: 72px 0 80px">
+<main id="top">
+<section class="hero">
 <div class="wrap g2">
 <div>
-<h1 style="font-weight: 700; font-size: 50px; line-height: 1.15; margin: 0 0 20px">Feel stronger, move easier.</h1>
-<p style="margin: 0 0 32px; color: #3E4B5E; font-size: 21px">Exercise therapy for pain, recovery, chronic conditions and staying independent as you get older.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 14px">
-<a href="https://book.appt.guru/?s=2192" style="background: #B4472A; color: #FFFFFF; text-decoration: none; padding: 16px 28px; border-radius: 14px; font-weight: 600">Book online</a>
-<a href="https://wa.me/27835562149" style="background: #FFFFFF; color: #1E2A3B; text-decoration: none; padding: 16px 28px; border-radius: 14px; font-weight: 600; border: 2px solid #D3DCE7">Ask a question on WhatsApp</a>
+<h1>Feel stronger, move easier.</h1>
+<p class="sub">Exercise therapy for pain, recovery, chronic conditions and staying independent as you get older.</p>
+<div class="ctas">
+<a class="btn btn-p" href="https://book.appt.guru/?s=2192">Book online</a>
+<a class="btn btn-s" href="https://wa.me/27835562149">Ask a question on WhatsApp</a>
 </div>
+<ul class="reassure">
+<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No referral needed</li>
+<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Most medical aids</li>
+<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Home visits available</li>
+</ul>
 </div>
-<div style="position: relative">
-<img src="images/derryn.webp" alt="Derryn Holliday" width="694" height="700" style="display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center top; border-radius: 50%; background: #DCE6F2">
-<div style="position: absolute; left: 0; bottom: 24px; background: #FFFFFF; border-radius: 16px; padding: 16px 20px; box-shadow: 0 8px 24px rgba(30,42,59,0.10)"><div style="font-weight: 700">26 years</div><div style="font-size: 15px; color: #556274">as a biokineticist</div></div>
+<div class="pwrap">
+<img src="images/derryn.webp" alt="Derryn Holliday" width="694" height="700">
+<div class="pbadge"><b>26 years</b><span>as a biokineticist</span></div>
 </div>
 </div>
 </section>
 
-<section style="background: #FFFFFF; padding: 88px 0">
+<section class="wrap" style="padding-bottom:96px">
+<div class="what">
+<div>
+<h2 class="h2">What is a biokineticist?</h2>
+<p>A registered health professional who uses exercise as treatment. I look at how you move, then give you exercises that help you get stronger, ease pain and do more of what you enjoy.</p>
+</div>
+<ul>
+<li><span class="num">1</span><div><b>After an operation</b><small>Picking up where your physio left off.</small></div></li>
+<li><span class="num">2</span><div><b>Long-term conditions</b><small>Like diabetes, blood pressure and arthritis.</small></div></li>
+<li><span class="num">3</span><div><b>Staying independent</b><small>Balance and strength for everyday life.</small></div></li>
+</ul>
+</div>
+</section>
+
+<section class="sec white">
 <div class="wrap">
-<h2 style="font-weight: 700; font-size: 36px; margin: 0 0 12px; text-align: center">Your first visit</h2>
-<p style="margin: 0 auto 44px; color: #556274; text-align: center; max-width: 620px">Here’s what happens.</p>
+<h2 class="h2" style="text-align:center">Your first visit</h2>
+<p class="intro" style="text-align:center;margin-left:auto;margin-right:auto">Here&rsquo;s what happens.</p>
 <div class="g3">
-<div style="background: #F4F7FB; border-radius: 20px; padding: 28px"><div style="width: 48px; height: 48px; border-radius: 50%; background: #B4472A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 16px">1</div><div style="font-weight: 600; font-size: 21px; margin-bottom: 6px">We talk</div><div style="color: #3E4B5E">Your history, and what you want to get back to doing.</div></div>
-<div style="background: #F4F7FB; border-radius: 20px; padding: 28px"><div style="width: 48px; height: 48px; border-radius: 50%; background: #B4472A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 16px">2</div><div style="font-weight: 600; font-size: 21px; margin-bottom: 6px">We assess</div><div style="color: #3E4B5E">Simple movement and strength tests.</div></div>
-<div style="background: #F4F7FB; border-radius: 20px; padding: 28px"><div style="width: 48px; height: 48px; border-radius: 50%; background: #B4472A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 16px">3</div><div style="font-weight: 600; font-size: 21px; margin-bottom: 6px">You get a plan</div><div style="color: #3E4B5E">Exercises for the studio and for home.</div></div>
+<div class="step"><div class="n">1</div><h3>We talk</h3><p>Your history, and what you want to get back to doing.</p></div>
+<div class="step"><div class="n">2</div><h3>We assess</h3><p>Simple movement and strength tests.</p></div>
+<div class="step"><div class="n">3</div><h3>You get a plan</h3><p>Exercises for the studio and for home.</p></div>
 </div>
 </div>
 </section>
 
-<section style="padding: 88px 0">
+<section class="sec" id="help">
 <div class="wrap">
-<h2 style="font-weight: 700; font-size: 36px; margin: 0 0 36px">How I can help</h2>
+<h2 class="h2">How I can help</h2>
+<p class="intro">Tap a topic to read more.</p>
 <div class="g3">
-<a href="#" style="display: block; background: #FFFFFF; border-radius: 20px; padding: 26px; text-decoration: none; color: #1E2A3B"><div style="font-weight: 600; font-size: 21px">Balance and falls prevention</div><div style="color: #556274; font-size: 17px; margin-top: 6px">Stay steady and independent.</div></a>
-<a href="#" style="display: block; background: #FFFFFF; border-radius: 20px; padding: 26px; text-decoration: none; color: #1E2A3B"><div style="font-weight: 600; font-size: 21px">After a hip or knee replacement</div><div style="color: #556274; font-size: 17px; margin-top: 6px">Get back to walking, stairs and gardening.</div></a>
-<a href="#" style="display: block; background: #FFFFFF; border-radius: 20px; padding: 26px; text-decoration: none; color: #1E2A3B"><div style="font-weight: 600; font-size: 21px">Back and neck pain</div><div style="color: #556274; font-size: 17px; margin-top: 6px">Ease pain with strength and mobility.</div></a>
-<a href="#" style="display: block; background: #FFFFFF; border-radius: 20px; padding: 26px; text-decoration: none; color: #1E2A3B"><div style="font-weight: 600; font-size: 21px">Diabetes and blood pressure</div><div style="color: #556274; font-size: 17px; margin-top: 6px">Exercise as part of managing your health.</div></a>
-<a href="#" style="display: block; background: #FFFFFF; border-radius: 20px; padding: 26px; text-decoration: none; color: #1E2A3B"><div style="font-weight: 600; font-size: 21px">Arthritis and joint pain</div><div style="color: #556274; font-size: 17px; margin-top: 6px">Move more comfortably every day.</div></a>
-<a href="#" style="display: block; background: #FFFFFF; border-radius: 20px; padding: 26px; text-decoration: none; color: #1E2A3B"><div style="font-weight: 600; font-size: 21px">Injuries and sport</div><div style="color: #556274; font-size: 17px; margin-top: 6px">A safe route back to activity.</div></a>
+<a class="help" href="#help"><span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v6l-3 8M12 13l3 8M8 10h8"/></svg></span><div><h3>Balance and falls prevention</h3><p>Stay steady and independent.</p></div></a>
+<a class="help" href="#help"><span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v8l-2 10M15 3v8l2 10M9 11h6"/></svg></span><div><h3>After a hip or knee replacement</h3><p>Get back to walking, stairs and gardening.</p></div></a>
+<a class="help" href="#help"><span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M8 6h8M7 10h10M8 14h8M9 18h6"/></svg></span><div><h3>Back and neck pain</h3><p>Ease pain with strength and mobility.</p></div></a>
+<a class="help" href="#help"><span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 12 5a5.5 5.5 0 0 0-10 3.5C2 13 12 21 12 21s3.5-2.8 7-7z"/></svg></span><div><h3>Diabetes and blood pressure</h3><p>Exercise as part of managing your health.</p></div></a>
+<a class="help" href="#help"><span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span><div><h3>Arthritis and joint pain</h3><p>Move more comfortably every day.</p></div></a>
+<a class="help" href="#help"><span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4" r="2"/><path d="m5 21 4-7 3 2v5M9 14l1-5 4 2 3 3M10 9l-3 2"/></svg></span><div><h3>Injuries and sport</h3><p>A safe route back to activity.</p></div></a>
 </div>
-<p style="margin: 28px 0 0; color: #3E4B5E">Can’t get to the studio? I do <strong>home visits</strong> and <strong>online sessions</strong>. Vitality assessments too.</p>
+<p class="note">Can&rsquo;t get to the studio? I do <strong>home visits</strong> and <strong>online sessions</strong>. Vitality assessments too.</p>
 </div>
 </section>
 
-<section style="background: #FFFFFF; padding: 88px 0">
-<div class="wrap g2">
-<img src="images/studio.webp" alt="The studio at Valerida Centre" width="1600" height="739" loading="lazy" style="display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 24px">
+<section class="sec white" id="about">
+<div class="wrap g2 about">
+<img src="images/studio.webp" alt="The bright studio at Valerida Centre, with mountain views" width="1600" height="739" loading="lazy">
 <div>
-<h2 style="font-weight: 700; font-size: 36px; margin: 0 0 16px">Hello, I’m Derryn</h2>
-<p style="margin: 0 0 14px; color: #3E4B5E">I’ve been a biokineticist for 26 years. I work with people of all ages and fitness levels.</p>
-<p style="margin: 0; color: #3E4B5E">BSc Sports Science and Honours in Biokinetics, Stellenbosch University. I also lecture part-time at UWC.</p>
+<h2 class="h2">Hello, I&rsquo;m Derryn</h2>
+<p>I&rsquo;ve been a biokineticist for 26 years. I work with people of all ages and fitness levels.</p>
+<p>BSc Sports Science and Honours in Biokinetics, Stellenbosch University. I also lecture part-time at UWC.</p>
+<a class="btn btn-p" href="https://book.appt.guru/?s=2192" style="margin-top:12px">Book your first visit</a>
 </div>
 </div>
 </section>
 
-<section style="padding: 88px 0">
-<div class="wrap" style="max-width: 860px">
-<h2 style="font-weight: 700; font-size: 36px; margin: 0 0 24px">Questions</h2>
-<details style="background: #FFFFFF; border-radius: 16px; padding: 20px 24px; margin-bottom: 12px"><summary style="font-weight: 600">What does a biokineticist do?</summary><p style="margin: 10px 0 0; color: #3E4B5E">We use exercise as treatment. It helps with recovery after injury or surgery, chronic conditions, and staying strong.</p></details>
-<details style="background: #FFFFFF; border-radius: 16px; padding: 20px 24px; margin-bottom: 12px"><summary style="font-weight: 600">Do I need a doctor’s referral?</summary><p style="margin: 10px 0 0; color: #3E4B5E">No, just book. Some medical aids want one, so check yours.</p></details>
-<details style="background: #FFFFFF; border-radius: 16px; padding: 20px 24px; margin-bottom: 12px"><summary style="font-weight: 600">Will my medical aid pay?</summary><p style="margin: 10px 0 0; color: #3E4B5E">Most schemes do, from day-to-day or savings. Check your plan.</p></details>
-<details style="background: #FFFFFF; border-radius: 16px; padding: 20px 24px; margin-bottom: 12px"><summary style="font-weight: 600">Is there parking and easy access?</summary><p style="margin: 10px 0 0; color: #3E4B5E">[Confirm parking and access at Valerida Centre]</p></details>
-<details style="background: #FFFFFF; border-radius: 16px; padding: 20px 24px; margin-bottom: 12px"><summary style="font-weight: 600">I’m not fit at all. Is that okay?</summary><p style="margin: 10px 0 0; color: #3E4B5E">Yes. We start where you are.</p></details>
+<section class="sec" id="faq">
+<div class="wrap" style="max-width:880px">
+<h2 class="h2" style="margin-bottom:24px">Questions</h2>
+<details class="faq"><summary>What does a biokineticist do?</summary><p>We use exercise as treatment. It helps with recovery after injury or surgery, chronic conditions, and staying strong.</p></details>
+<details class="faq"><summary>Do I need a doctor&rsquo;s referral?</summary><p>No, just book. Some medical aids want one, so check yours.</p></details>
+<details class="faq"><summary>Will my medical aid pay?</summary><p>Most schemes do, from day-to-day or savings. Check your plan.</p></details>
+<details class="faq"><summary>Is there parking and easy access?</summary><p>[Confirm parking and access at Valerida Centre]</p></details>
+<details class="faq"><summary>I&rsquo;m not fit at all. Is that okay?</summary><p>Yes. We start where you are.</p></details>
 </div>
 </section>
 
-<section style="background: #1E2A3B; color: #FFFFFF; padding: 72px 0">
+<section class="docs">
 <div class="wrap g2">
 <div>
-<h2 style="font-weight: 700; font-size: 34px; margin: 0 0 12px">Are you a doctor or physio?</h2>
-<p style="margin: 0; color: #C3CCD8">Refer a patient with the form or online. I’ll send you a report.</p>
+<h2 class="h2">Are you a doctor or physio?</h2>
+<p>Refer a patient with the form or online. I&rsquo;ll send you a report.</p>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 12px">
-<a href="#" style="background: #FFFFFF; color: #1E2A3B; text-decoration: none; padding: 16px 24px; border-radius: 14px; font-weight: 600">Referral form</a>
-<a href="#" style="border: 2px solid #8B98AA; color: #FFFFFF; text-decoration: none; padding: 14px 22px; border-radius: 14px; font-weight: 600">Refer online</a>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<a class="btn btn-w" href="#top">Referral form</a>
+<a class="btn btn-wo" href="#top">Refer online</a>
 </div>
 </div>
 </section>
 
-<footer style="padding: 56px 0 40px">
-<div class="wrap g3" style="align-items: start; font-size: 17px; color: #3E4B5E">
-<div><div style="font-weight: 600; color: #1E2A3B; margin-bottom: 6px">Find us</div>Valerida Centre, Suite 201<br>21 Piet Retief St, Krigeville, Stellenbosch<br><a href="https://www.google.com/maps/dir/?api=1&amp;destination=-33.94256,18.8599">Directions</a></div>
-<div><div style="font-weight: 600; color: #1E2A3B; margin-bottom: 6px">Opening hours</div>Mon to Fri, 06:00 to 18:00<br>Saturday by appointment</div>
-<div><div style="font-weight: 600; color: #1E2A3B; margin-bottom: 6px">Get in touch</div><a href="tel:+27835562149">083 556 2149</a><br><a href="https://wa.me/27835562149">WhatsApp</a></div>
+<section class="sec" id="visit">
+<div class="wrap">
+<h2 class="h2" style="margin-bottom:32px">How to find me</h2>
+<div class="visit">
+<div class="vcard">
+<a class="bigcall" href="tel:+27835562149"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8E3519" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.8 2z"/></svg><div><b>083 556 2149</b><span>Call or WhatsApp</span></div></a>
+<div><h3>Address</h3><div>Valerida Centre, Suite 201<br>21 Piet Retief St, Krigeville, Stellenbosch</div><a href="https://www.google.com/maps/dir/?api=1&amp;destination=-33.94256,18.8599">Get directions</a></div>
+<div><h3>Opening hours</h3><div>Monday to Friday, 06:00 to 18:00<br>Saturday by appointment</div></div>
 </div>
-<div class="wrap" style="margin-top: 40px; font-size: 15px; color: #556274">© 2026 Derryn Holliday Biokineticist · HPCSA [Confirm number]</div>
+<iframe class="map" title="Map showing Valerida Centre, Krigeville, Stellenbosch" src="https://maps.google.com/maps?q=-33.94256,18.8599&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<div class="fg">
+<div><a class="brand" href="#top"><img src="images/logo.webp" alt="" width="36" height="36">Derryn Holliday</a><p style="margin:12px 0 0">Biokineticist in Krigeville, Stellenbosch.</p></div>
+<div><h4>Visit</h4><ul><li><a href="#help">How I can help</a></li><li><a href="#about">About me</a></li><li><a href="#faq">Questions</a></li></ul></div>
+<div><h4>Get in touch</h4><ul><li><a href="tel:+27835562149">083 556 2149</a></li><li><a href="https://wa.me/27835562149">WhatsApp</a></li><li><a href="https://book.appt.guru/?s=2192">Book online</a></li></ul></div>
+</div>
+<div class="fbot"><span>&copy; 2026 Derryn Holliday Biokineticist &middot; HPCSA [Confirm number]</span><span>Bookings by AppointmentGuru</span></div>
+</div>
 </footer>
 
-</div>
+<div class="mcta"><a class="btn btn-s" href="tel:+27835562149">Call</a><a class="btn btn-p" href="https://book.appt.guru/?s=2192">Book online</a><a class="btn btn-s" href="https://wa.me/27835562149">WhatsApp</a></div>
+
 <div id="demo-bar" style="position:fixed;left:50%;white-space:nowrap;max-width:calc(100vw - 24px);bottom:16px;transform:translateX(-50%);z-index:999;display:flex;gap:6px;align-items:center;background:rgba(17,17,17,.92);color:#fff;font:600 13px/1 system-ui,sans-serif;padding:6px;border-radius:999px;box-shadow:0 6px 24px rgba(0,0,0,.25)">
-<a href="./" style="color:#fff;text-decoration:none;padding:10px 14px;border-radius:999px">&larr; All designs</a>
+<a href="designs.html" style="color:#fff;text-decoration:none;padding:10px 14px;border-radius:999px">&larr; All designs</a>
 <span style="padding:10px 14px;background:rgba(255,255,255,.14);border-radius:999px">4 of 5 &middot; Warm and Welcoming</span>
 </div>
 <script>if(window.self!==window.top){document.getElementById("demo-bar").style.display="none";}</script>

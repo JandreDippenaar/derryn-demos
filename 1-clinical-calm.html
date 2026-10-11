@@ -5,141 +5,302 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Design 1: Clinical Calm | Derryn Holliday demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Source+Sans+3:wght@400;600&amp;display=swap">
 <style>
-body{margin:0;background:#FFFFFF}
-a{color:#0B5F63}a:hover{color:#083F42}
-.wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
-.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;align-items:center}
+:root{--teal:#0B5F63;--teal-dk:#083F42;--ink:#10292E;--body:#3B5155;--muted:#4A5F63;--line:#E3ECEC;--tint:#F2F7F7;--tint2:#D9E7E7}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:#fff;color:var(--ink);font:17px/1.6 'Source Sans 3',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Manrope,system-ui,sans-serif;letter-spacing:-.01em}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--teal)}a:hover{color:var(--teal-dk)}
+:focus-visible{outline:3px solid #2A9DA3;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.sec{padding:96px 0}
+.tint{background:var(--tint)}
+.kicker{font:700 13px/1.2 Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.h2{font-weight:800;font-size:clamp(28px,3.4vw,38px);line-height:1.15;margin:10px 0 12px}
+.lead{color:var(--body);max-width:620px;margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:10px;font:700 16px/1 Manrope,sans-serif;text-decoration:none;transition:background .15s,border-color .15s}
+.btn-p{background:var(--teal);color:#fff}.btn-p:hover{background:var(--teal-dk);color:#fff}
+.btn-s{background:#fff;color:var(--ink);border:1px solid #C9D8D8}.btn-s:hover{border-color:var(--teal);color:var(--ink)}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px;align-items:center}
 .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.nav{display:flex;flex-wrap:wrap;gap:24px;align-items:center}
-@media (max-width:860px){.g2,.g3{grid-template-columns:1fr;gap:24px}.hide-sm{display:none}.wrap{padding:0 16px}}
-details summary{cursor:pointer;list-style:none}
-details summary::-webkit-details-marker{display:none}
+
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(8px);-webkit-backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line)}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:16px;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand b{display:block;font:800 17px/1.2 Manrope,sans-serif}.brand small{display:block;font:600 13px/1.2 Manrope,sans-serif;color:var(--muted)}
+.nav{display:flex;align-items:center;gap:28px;font:600 15px Manrope,sans-serif}
+.nav a:not(.btn){color:var(--ink);text-decoration:none;padding:8px 0;border-bottom:2px solid transparent}
+.nav a:not(.btn):hover{border-color:var(--teal)}
+.menu{display:none;position:relative}
+.menu summary{list-style:none;cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;padding:0 14px;border:1px solid #C9D8D8;border-radius:10px;font:700 15px Manrope,sans-serif}
+.menu summary::-webkit-details-marker{display:none}
+.menu nav{position:absolute;right:0;top:54px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 16px 40px rgba(16,41,46,.14);padding:8px;min-width:230px;display:flex;flex-direction:column}
+.menu nav a{padding:12px 14px;border-radius:8px;color:var(--ink);text-decoration:none;font:600 16px Manrope,sans-serif}
+.menu nav a:hover{background:var(--tint)}
+
+.hero{background:linear-gradient(180deg,var(--tint) 0,#fff 100%);padding:80px 0 88px}
+.hero h1{font-weight:800;font-size:clamp(38px,5.2vw,60px);line-height:1.05;margin:14px 0 18px;letter-spacing:-.025em}
+.hero .sub{font-size:19px;color:var(--body);max-width:500px;margin:0 0 30px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.stats{display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+.stats strong{display:block;font:800 24px/1.2 Manrope,sans-serif;color:var(--ink)}
+.portrait{position:relative}
+.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:24px;background:var(--tint2)}
+.badge{position:absolute;left:-20px;bottom:28px;background:#fff;border-radius:14px;padding:14px 18px;box-shadow:0 12px 32px rgba(16,41,46,.14);display:flex;gap:12px;align-items:center;font-size:14px;color:var(--muted)}
+.badge b{display:block;color:var(--ink);font:800 15px Manrope,sans-serif}
+.dot{width:10px;height:10px;border-radius:50%;background:#2BB673;box-shadow:0 0 0 4px rgba(43,182,115,.18);flex:none}
+
+.what{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
+.pts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.pt{border:1px solid var(--line);border-radius:14px;padding:20px}
+.pt b{display:block;font:700 17px Manrope,sans-serif;margin-bottom:4px}
+.pt span{color:var(--muted);font-size:15px}
+.ic{width:36px;height:36px;border-radius:10px;background:var(--tint);color:var(--teal);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+
+.card{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;transition:border-color .15s,box-shadow .15s,transform .15s}
+.card:hover{border-color:#9CC5C7;box-shadow:0 10px 28px rgba(16,41,46,.08);transform:translateY(-2px);color:var(--ink)}
+.card h3{font-weight:700;font-size:19px;margin:0 0 6px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.card .more{margin-top:auto;padding-top:16px;font:700 15px Manrope,sans-serif;color:var(--teal)}
+.svc{background:#fff;border-radius:16px;padding:24px;border:1px solid var(--line)}
+.svc h3{font-weight:700;font-size:18px;margin:0}
+.svc p{margin:6px 0 0;color:var(--muted);font-size:15px}
+
+.about img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:24px}
+.quals{list-style:none;padding:0;margin:20px 0 28px;border-top:1px solid #D3E2E2}
+.quals li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid #D3E2E2;font-size:16px}
+.quals li span:first-child{color:var(--muted)}
+.quals li span:last-child{text-align:right;font-weight:600}
+
+.ref{background:var(--ink);color:#fff}
+.ref .kicker{color:#9FD3D5}
+.ref p{color:#C8DADB;margin:0}
+.ref .acts{display:flex;flex-direction:column;gap:12px}
+.ref .acts a{display:flex;justify-content:space-between;align-items:center;min-height:56px;padding:14px 20px;border-radius:12px;font:700 16px Manrope,sans-serif;text-decoration:none}
+.ref .a1{background:#fff;color:var(--ink)}.ref .a1:hover{background:#E6F2F2;color:var(--ink)}
+.ref .a2{border:1px solid #5E7E82;color:#fff}.ref .a2:hover{border-color:#9FD3D5;color:#fff}
+
+details.faq{border-bottom:1px solid var(--line)}
+details.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font:700 18px Manrope,sans-serif}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";font-size:26px;font-weight:600;color:var(--teal);line-height:1;transition:transform .2s}
+details.faq[open] summary::after{transform:rotate(45deg)}
+details.faq p{margin:0 0 20px;color:var(--muted)}
+
+.contact{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:stretch}
+.cblock{padding:18px 0;border-bottom:1px solid #D3E2E2}
+.cblock:first-child{padding-top:0}
+.cblock:last-child{border:0}
+.cblock h3{font-size:13px;font-weight:700;margin:0 0 6px;color:var(--teal);text-transform:uppercase;letter-spacing:.1em}
+.cblock div{color:var(--body)}
+.map{border:0;width:100%;height:100%;min-height:380px;border-radius:20px;background:var(--tint2)}
+
+footer{background:var(--ink);color:#C8DADB;padding:56px 0 32px;font-size:15px}
+footer a{color:#fff;text-decoration:none}footer a:hover{text-decoration:underline;color:#fff}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+.fg h4{font:700 13px Manrope,sans-serif;color:#fff;margin:0 0 12px;letter-spacing:.1em;text-transform:uppercase}
+.fg ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.fbot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:40px;padding-top:24px;border-top:1px solid #2D4A50;font-size:14px;color:#9DB5B8}
+
+.mcta{display:none}
+
+@media (max-width:980px){.nav{display:none}.menu{display:block}.what,.contact{grid-template-columns:1fr;gap:32px}.fg{grid-template-columns:1fr 1fr}}
+@media (max-width:860px){
+ .wrap{padding:0 16px}.sec{padding:64px 0}
+ .g2,.g3{grid-template-columns:1fr;gap:28px}
+ .hero{padding:40px 0 56px}.hero .g2{gap:36px}
+ .portrait{max-width:440px}
+ .badge{left:12px;bottom:12px}
+ .pts{grid-template-columns:1fr}
+ .map{min-height:300px}
+ .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(16,41,46,.08)}
+ .mcta .btn{flex:1}
+ body{padding-bottom:70px}
+ #demo-bar{bottom:82px !important}
+ .brand small{display:none}
+}
+@media (max-width:520px){.fg{grid-template-columns:1fr}.stats{gap:16px 28px}.quals li{flex-direction:column;gap:2px}.quals li span:last-child{text-align:left}}
+@media (prefers-reduced-motion:no-preference){.rise{animation:rise .7s ease both}.rise2{animation:rise .7s .12s ease both}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none !important}}
 </style>
 </head>
 <body>
-<div style="font-family: 'Source Sans 3', system-ui, sans-serif; color: #10292E; font-size: 17px; line-height: 1.6">
 
-<header style="border-bottom: 1px solid #E3ECEC; background: #FFFFFF">
-<div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-top: 18px; padding-bottom: 18px">
-<div style="display: flex; align-items: center; gap: 12px">
-<img src="images/logo.webp" alt="" width="44" height="44" style="display: block">
-<div style="font-family: Manrope, sans-serif; line-height: 1.2"><div style="font-weight: 800; font-size: 17px">Derryn Holliday</div><div style="font-size: 13px; color: #4A5F63; font-weight: 600">Biokineticist, Stellenbosch</div></div>
-</div>
-<nav class="nav" style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 15px">
-<a href="#conditions" class="hide-sm" style="color: #10292E; text-decoration: none">Conditions</a>
-<a href="#services" class="hide-sm" style="color: #10292E; text-decoration: none">Services</a>
-<a href="#referrers" class="hide-sm" style="color: #10292E; text-decoration: none">For practitioners</a>
-<a href="#faq" class="hide-sm" style="color: #10292E; text-decoration: none">FAQ</a>
-<a href="https://book.appt.guru/?s=2192" style="background: #0B5F63; color: #FFFFFF; text-decoration: none; padding: 12px 20px; border-radius: 8px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Book online</a>
+<header>
+<div class="wrap hd">
+<a class="brand" href="#top"><img src="images/logo.webp" alt="" width="44" height="44"><span><b>Derryn Holliday</b><small>Biokineticist, Stellenbosch</small></span></a>
+<nav class="nav" aria-label="Main">
+<a href="#conditions">Conditions</a>
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#referrers">For practitioners</a>
+<a href="#contact">Contact</a>
+<a class="btn btn-p" href="https://book.appt.guru/?s=2192">Book online</a>
 </nav>
+<details class="menu"><summary>Menu <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+<nav aria-label="Mobile">
+<a href="#conditions">Conditions</a><a href="#services">Services</a><a href="#about">About</a><a href="#referrers">For practitioners</a><a href="#faq">Questions</a><a href="#contact">Contact and map</a>
+</nav></details>
 </div>
 </header>
 
-<section style="background: #F2F7F7; padding: 88px 0 80px">
+<main id="top">
+<section class="hero">
 <div class="wrap g2">
-<div>
-<div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: #0B5F63">Biokineticist in Stellenbosch</div>
-<h1 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 54px; line-height: 1.08; margin: 16px 0 20px; letter-spacing: -0.02em">Exercise therapy in Stellenbosch.</h1>
-<p style="margin: 0 0 32px; font-size: 19px; color: #3B5155; max-width: 520px">Rehab after injury or surgery, help with chronic conditions, and Vitality assessments. In Krigeville.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 12px">
-<a href="https://book.appt.guru/?s=2192" style="background: #0B5F63; color: #FFFFFF; text-decoration: none; padding: 14px 24px; border-radius: 8px; font-family: Manrope, sans-serif; font-weight: 700">Book an appointment</a>
-<a href="https://wa.me/27835562149" style="background: #FFFFFF; color: #10292E; text-decoration: none; padding: 14px 24px; border-radius: 8px; border: 1px solid #C9D8D8; font-family: Manrope, sans-serif; font-weight: 700">WhatsApp Derryn</a>
+<div class="rise">
+<div class="kicker">Biokineticist in Stellenbosch</div>
+<h1>Exercise therapy in Stellenbosch.</h1>
+<p class="sub">Rehab after injury or surgery, help with chronic conditions, and Vitality assessments. In Krigeville.</p>
+<div class="ctas">
+<a class="btn btn-p" href="https://book.appt.guru/?s=2192">Book an appointment</a>
+<a class="btn btn-s" href="https://wa.me/27835562149"><svg width="18" height="18" viewBox="0 0 24 24" fill="#1FA855" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg>WhatsApp Derryn</a>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 28px; margin-top: 40px; font-size: 15px; color: #3B5155">
-<div><strong style="display: block; font-family: Manrope, sans-serif; font-size: 26px; color: #10292E">26 years</strong>in practice</div>
-<div><strong style="display: block; font-family: Manrope, sans-serif; font-size: 26px; color: #10292E">Hons</strong>Biokinetics, Stellenbosch</div>
-<div><strong style="display: block; font-family: Manrope, sans-serif; font-size: 26px; color: #10292E">Medical aid</strong>most schemes</div>
+<div class="stats">
+<div><strong>26 years</strong>in practice</div>
+<div><strong>Hons</strong>Biokinetics, Stellenbosch</div>
+<div><strong>Medical aid</strong>most schemes</div>
 </div>
 </div>
-<img src="images/derryn.webp" alt="Derryn Holliday" width="694" height="700" style="display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: 20px; background: #D9E7E7">
+<div class="portrait rise2">
+<img src="images/derryn.webp" alt="Derryn Holliday" width="694" height="700">
+<div class="badge"><span class="dot"></span><span><b>Mon to Fri, 06:00 to 18:00</b>Valerida Centre, Krigeville</span></div>
+</div>
 </div>
 </section>
 
-<section id="conditions" style="padding: 88px 0">
+<section class="sec" id="what">
+<div class="wrap what">
+<div>
+<div class="kicker">What is biokinetics?</div>
+<h2 class="h2">Exercise, prescribed as treatment.</h2>
+<p class="lead">A biokineticist is a registered health professional who uses exercise to treat injuries and manage health conditions. Your programme is built around your body, your history and your goals.</p>
+</div>
+<div class="pts">
+<div class="pt"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12h-4l-3 8-4-16-3 8H2"/></svg></div><b>Rehab</b><span>After injury or surgery, when physio ends.</span></div>
+<div class="pt"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 12 5a5.5 5.5 0 0 0-10 3.5C2 13 12 21 12 21s3.5-2.8 7-7z"/></svg></div><b>Chronic conditions</b><span>Diabetes, blood pressure, arthritis.</span></div>
+<div class="pt"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><b>Prevention</b><span>Strength and balance to avoid injury.</span></div>
+<div class="pt"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 2-9 12h8l-1 8 9-12h-8z"/></svg></div><b>Performance</b><span>Testing and conditioning for sport.</span></div>
+</div>
+</div>
+</section>
+
+<section class="sec tint" id="conditions">
 <div class="wrap">
-<h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 36px; margin: 0 0 8px; letter-spacing: -0.01em">What I help with</h2>
-<p style="margin: 0 0 36px; color: #4A5F63; max-width: 640px">Tap one to read more.</p>
+<div class="kicker">Conditions</div>
+<h2 class="h2">What I help with</h2>
+<p class="lead" style="margin-bottom:36px">Tap one to read more.</p>
 <div class="g3">
-<a href="#conditions" style="display: block; text-decoration: none; color: #10292E; border: 1px solid #E3ECEC; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 6px">Knee and ACL rehab</div><div style="color: #4A5F63; font-size: 15px">Before and after surgery.</div><div style="margin-top: 14px; font-weight: 600; color: #0B5F63">Read more</div></a>
-<a href="#conditions" style="display: block; text-decoration: none; color: #10292E; border: 1px solid #E3ECEC; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 6px">Back and neck pain</div><div style="color: #4A5F63; font-size: 15px">Strength and mobility work.</div><div style="margin-top: 14px; font-weight: 600; color: #0B5F63">Read more</div></a>
-<a href="#conditions" style="display: block; text-decoration: none; color: #10292E; border: 1px solid #E3ECEC; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 6px">Post-surgery rehab</div><div style="color: #4A5F63; font-size: 15px">Hips, shoulders and joint replacements.</div><div style="margin-top: 14px; font-weight: 600; color: #0B5F63">Read more</div></a>
-<a href="#conditions" style="display: block; text-decoration: none; color: #10292E; border: 1px solid #E3ECEC; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 6px">Sports injuries</div><div style="color: #4A5F63; font-size: 15px">School, varsity and weekend sport.</div><div style="margin-top: 14px; font-weight: 600; color: #0B5F63">Read more</div></a>
-<a href="#conditions" style="display: block; text-decoration: none; color: #10292E; border: 1px solid #E3ECEC; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 6px">Chronic conditions</div><div style="color: #4A5F63; font-size: 15px">Diabetes, blood pressure, arthritis, heart health.</div><div style="margin-top: 14px; font-weight: 600; color: #0B5F63">Read more</div></a>
-<a href="#conditions" style="display: block; text-decoration: none; color: #10292E; border: 1px solid #E3ECEC; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 6px">Healthy ageing</div><div style="color: #4A5F63; font-size: 15px">Balance and strength, fewer falls.</div><div style="margin-top: 14px; font-weight: 600; color: #0B5F63">Read more</div></a>
+<a class="card" href="#conditions"><h3>Knee and ACL rehab</h3><p>Before and after surgery.</p><span class="more">Read more &rarr;</span></a>
+<a class="card" href="#conditions"><h3>Back and neck pain</h3><p>Strength and mobility work.</p><span class="more">Read more &rarr;</span></a>
+<a class="card" href="#conditions"><h3>Post-surgery rehab</h3><p>Hips, shoulders and joint replacements.</p><span class="more">Read more &rarr;</span></a>
+<a class="card" href="#conditions"><h3>Sports injuries</h3><p>School, varsity and weekend sport.</p><span class="more">Read more &rarr;</span></a>
+<a class="card" href="#conditions"><h3>Chronic conditions</h3><p>Diabetes, blood pressure, arthritis, heart health.</p><span class="more">Read more &rarr;</span></a>
+<a class="card" href="#conditions"><h3>Healthy ageing</h3><p>Balance and strength, fewer falls.</p><span class="more">Read more &rarr;</span></a>
 </div>
 </div>
 </section>
 
-<section id="services" style="background: #F2F7F7; padding: 88px 0">
+<section class="sec" id="services">
 <div class="wrap">
-<h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 36px; margin: 0 0 36px">Services</h2>
+<div class="kicker">Services</div>
+<h2 class="h2" style="margin-bottom:36px">How you can see me</h2>
 <div class="g3">
-<div style="background: #FFFFFF; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Initial consultation</div><p style="margin: 8px 0 0; color: #4A5F63; font-size: 15px">Assessment, goals and a plan.</p></div>
-<div style="background: #FFFFFF; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Follow-up sessions</div><p style="margin: 8px 0 0; color: #4A5F63; font-size: 15px">Your programme, adjusted as you improve.</p></div>
-<div style="background: #FFFFFF; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Discovery Vitality assessment</div><p style="margin: 8px 0 0; color: #4A5F63; font-size: 15px">Counts towards your Vitality points.</p></div>
-<div style="background: #FFFFFF; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Home visits</div><p style="margin: 8px 0 0; color: #4A5F63; font-size: 15px">If you can’t get to the practice.</p></div>
-<div style="background: #FFFFFF; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Online sessions</div><p style="margin: 8px 0 0; color: #4A5F63; font-size: 15px">Video sessions from home.</p></div>
-<div style="background: #FFFFFF; border-radius: 14px; padding: 24px"><div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Paired sessions</div><p style="margin: 8px 0 0; color: #4A5F63; font-size: 15px">Train with a friend or partner.</p></div>
+<div class="svc"><h3>Initial consultation</h3><p>Assessment, goals and a plan.</p></div>
+<div class="svc"><h3>Follow-up sessions</h3><p>Your programme, adjusted as you improve.</p></div>
+<div class="svc"><h3>Discovery Vitality assessment</h3><p>Counts towards your Vitality points.</p></div>
+<div class="svc"><h3>Home visits</h3><p>If you can&rsquo;t get to the practice.</p></div>
+<div class="svc"><h3>Online sessions</h3><p>Video sessions from home.</p></div>
+<div class="svc"><h3>Paired sessions</h3><p>Train with a friend or partner.</p></div>
 </div>
 </div>
 </section>
 
-<section id="about" style="padding: 88px 0">
-<div class="wrap g2">
-<img src="images/studio.webp" alt="The studio at Valerida Centre" width="1600" height="739" loading="lazy" style="display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px">
+<section class="sec tint" id="about">
+<div class="wrap g2 about">
+<img src="images/studio.webp" alt="The studio at Valerida Centre, with mountain views" width="1600" height="739" loading="lazy">
 <div>
-<h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 36px; margin: 0 0 16px">About me</h2>
-<p style="margin: 0 0 14px; color: #3B5155">I’ve been a biokineticist for 26 years. I use exercise to help people recover from injury and surgery, and to manage things like diabetes and arthritis.</p>
-<p style="margin: 0 0 20px; color: #3B5155">BSc Sports Science and Honours in Biokinetics, Stellenbosch University. Contract lecturer at UWC since 2007.</p>
-<a href="https://book.appt.guru/?s=2192" style="font-family: Manrope, sans-serif; font-weight: 700; color: #0B5F63">Book a first consultation</a>
+<div class="kicker">About</div>
+<h2 class="h2">About me</h2>
+<p class="lead">I&rsquo;ve been a biokineticist for 26 years. I use exercise to help people recover from injury and surgery, and to manage things like diabetes and arthritis.</p>
+<ul class="quals">
+<li><span>Qualifications</span><span>BSc Sports Science, Hons Biokinetics (SU)</span></li>
+<li><span>Teaching</span><span>Contract lecturer, UWC</span></li>
+<li><span>Registration</span><span>HPCSA [Confirm number]</span></li>
+</ul>
+<a class="btn btn-p" href="https://book.appt.guru/?s=2192">Book a first consultation</a>
 </div>
 </div>
 </section>
 
-<section id="referrers" style="background: #10292E; color: #FFFFFF; padding: 80px 0">
+<section class="sec ref" id="referrers">
 <div class="wrap g2">
 <div>
-<div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: #9FD3D5">For doctors, physios and surgeons</div>
-<h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 34px; margin: 12px 0 16px">Referring a patient?</h2>
-<p style="margin: 0; color: #C8DADB">I work with GPs, physios and surgeons. You’ll get a report after the assessment and at discharge.</p>
+<div class="kicker">For doctors, physios and surgeons</div>
+<h2 class="h2">Referring a patient?</h2>
+<p>I work with GPs, physios and surgeons. You&rsquo;ll get a report after the assessment and at discharge.</p>
 </div>
-<div style="display: flex; flex-direction: column; gap: 12px">
-<a href="#referrers" style="background: #FFFFFF; color: #10292E; text-decoration: none; padding: 16px 20px; border-radius: 10px; font-family: Manrope, sans-serif; font-weight: 700">Referral form (PDF)</a>
-<a href="#referrers" style="border: 1px solid #5E7E82; color: #FFFFFF; text-decoration: none; padding: 16px 20px; border-radius: 10px; font-family: Manrope, sans-serif; font-weight: 700">Refer online</a>
+<div class="acts">
+<a class="a1" href="#referrers">Referral form (PDF) <span aria-hidden="true">&darr;</span></a>
+<a class="a2" href="#referrers">Refer online <span aria-hidden="true">&rarr;</span></a>
 </div>
-</div>
-</section>
-
-<section id="faq" style="padding: 88px 0">
-<div class="wrap" style="max-width: 860px">
-<h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 36px; margin: 0 0 28px">Questions</h2>
-<details style="border-bottom: 1px solid #E3ECEC; padding: 18px 0"><summary style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">What does a biokineticist do?</summary><p style="margin: 10px 0 0; color: #4A5F63">We use exercise as treatment: rehab after injury or surgery, managing chronic conditions, and getting stronger.</p></details>
-<details style="border-bottom: 1px solid #E3ECEC; padding: 18px 0"><summary style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Do I need a doctor’s referral?</summary><p style="margin: 10px 0 0; color: #4A5F63">No, just book. Some medical aids want one, so check yours.</p></details>
-<details style="border-bottom: 1px solid #E3ECEC; padding: 18px 0"><summary style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Does medical aid cover biokinetics?</summary><p style="margin: 10px 0 0; color: #4A5F63">Most schemes do, from day-to-day or savings. Check your plan.</p></details>
-<details style="border-bottom: 1px solid #E3ECEC; padding: 18px 0"><summary style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">How long is a session?</summary><p style="margin: 10px 0 0; color: #4A5F63">[Confirm session length]</p></details>
-<details style="border-bottom: 1px solid #E3ECEC; padding: 18px 0"><summary style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">What should I wear?</summary><p style="margin: 10px 0 0; color: #4A5F63">Exercise clothes and trainers.</p></details>
 </div>
 </section>
 
-<section id="contact" style="background: #F2F7F7; padding: 80px 0">
-<div class="wrap g3" style="align-items: start">
-<div><div style="font-family: Manrope, sans-serif; font-weight: 700; margin-bottom: 8px">Visit</div><div style="color: #3B5155">Valerida Centre, Suite 201<br>21 Piet Retief St, Krigeville<br>Stellenbosch, 7600</div><a href="https://www.google.com/maps/dir/?api=1&amp;destination=-33.94256,18.8599" style="display: inline-block; margin-top: 10px; font-weight: 600">Get directions</a></div>
-<div><div style="font-family: Manrope, sans-serif; font-weight: 700; margin-bottom: 8px">Contact</div><div style="color: #3B5155"><a href="tel:+27835562149">083 556 2149</a><br><a href="https://wa.me/27835562149">WhatsApp</a></div></div>
-<div><div style="font-family: Manrope, sans-serif; font-weight: 700; margin-bottom: 8px">Hours</div><div style="color: #3B5155">Mon to Fri: 06:00 to 18:00<br>Sat: by appointment<br>Sun: closed</div></div>
+<section class="sec" id="faq">
+<div class="wrap" style="max-width:860px">
+<div class="kicker">FAQ</div>
+<h2 class="h2" style="margin-bottom:16px">Questions</h2>
+<details class="faq"><summary>What does a biokineticist do?</summary><p>We use exercise as treatment: rehab after injury or surgery, managing chronic conditions, and getting stronger.</p></details>
+<details class="faq"><summary>Do I need a doctor&rsquo;s referral?</summary><p>No, just book. Some medical aids want one, so check yours.</p></details>
+<details class="faq"><summary>Does medical aid cover biokinetics?</summary><p>Most schemes do, from day-to-day or savings. Check your plan.</p></details>
+<details class="faq"><summary>How long is a session?</summary><p>[Confirm session length]</p></details>
+<details class="faq"><summary>What should I wear?</summary><p>Exercise clothes and trainers.</p></details>
 </div>
 </section>
 
-<footer style="padding: 28px 0; font-size: 14px; color: #4A5F63">
-<div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px"><div>© 2026 Derryn Holliday Biokineticist</div><div>HPCSA registered [Confirm number]</div></div>
+<section class="sec tint" id="contact">
+<div class="wrap">
+<div class="kicker">Contact</div>
+<h2 class="h2" style="margin-bottom:32px">Visit the practice</h2>
+<div class="contact">
+<div>
+<div class="cblock"><h3>Address</h3><div>Valerida Centre, Suite 201<br>21 Piet Retief St, Krigeville<br>Stellenbosch, 7600</div><a href="https://www.google.com/maps/dir/?api=1&amp;destination=-33.94256,18.8599" style="display:inline-block;margin-top:8px;font-weight:600">Get directions &rarr;</a></div>
+<div class="cblock"><h3>Phone and WhatsApp</h3><div><a href="tel:+27835562149">083 556 2149</a> &middot; <a href="https://wa.me/27835562149">WhatsApp</a></div></div>
+<div class="cblock"><h3>Hours</h3><div>Mon to Fri: 06:00 to 18:00<br>Sat: by appointment<br>Sun: closed</div></div>
+<div class="cblock"><h3>Booking</h3><div><a href="https://book.appt.guru/?s=2192">Book online</a> any time.</div></div>
+</div>
+<iframe class="map" title="Map showing Valerida Centre, Krigeville, Stellenbosch" src="https://maps.google.com/maps?q=-33.94256,18.8599&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<div class="fg">
+<div><a class="brand" href="#top" style="color:#fff"><img src="images/logo.webp" alt="" width="40" height="40"><span><b>Derryn Holliday</b><small style="color:#9DB5B8">Biokineticist</small></span></a><p style="margin:16px 0 0;max-width:300px">Exercise therapy for injury, surgery and chronic conditions in Stellenbosch.</p></div>
+<div><h4>Practice</h4><ul><li><a href="#conditions">Conditions</a></li><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#faq">Questions</a></li></ul></div>
+<div><h4>Practitioners</h4><ul><li><a href="#referrers">Refer a patient</a></li><li><a href="#referrers">Referral form</a></li></ul></div>
+<div><h4>Contact</h4><ul><li><a href="tel:+27835562149">083 556 2149</a></li><li><a href="https://wa.me/27835562149">WhatsApp</a></li><li><a href="https://book.appt.guru/?s=2192">Book online</a></li></ul></div>
+</div>
+<div class="fbot"><span>&copy; 2026 Derryn Holliday Biokineticist &middot; HPCSA [Confirm number]</span><span>Bookings by AppointmentGuru</span></div>
+</div>
 </footer>
 
-</div>
+<div class="mcta"><a class="btn btn-p" href="https://book.appt.guru/?s=2192">Book online</a><a class="btn btn-s" href="https://wa.me/27835562149">WhatsApp</a></div>
+
 <div id="demo-bar" style="position:fixed;left:50%;white-space:nowrap;max-width:calc(100vw - 24px);bottom:16px;transform:translateX(-50%);z-index:999;display:flex;gap:6px;align-items:center;background:rgba(17,17,17,.92);color:#fff;font:600 13px/1 system-ui,sans-serif;padding:6px;border-radius:999px;box-shadow:0 6px 24px rgba(0,0,0,.25)">
-<a href="./" style="color:#fff;text-decoration:none;padding:10px 14px;border-radius:999px">&larr; All designs</a>
+<a href="designs.html" style="color:#fff;text-decoration:none;padding:10px 14px;border-radius:999px">&larr; All designs</a>
 <span style="padding:10px 14px;background:rgba(255,255,255,.14);border-radius:999px">1 of 5 &middot; Clinical Calm</span>
 </div>
-<script>if(window.self!==window.top){document.getElementById("demo-bar").style.display="none";}</script>
+<script>
+if(window.self!==window.top){document.getElementById("demo-bar").style.display="none";}
+document.querySelectorAll('.menu nav a').forEach(function(a){a.addEventListener('click',function(){a.closest('details').removeAttribute('open');});});
+</script>
 </body>
 </html>

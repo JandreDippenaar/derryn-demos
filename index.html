@@ -4,81 +4,584 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Website Designs for Derryn Holliday</title>
+<title>Your New Website | Derryn Holliday</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500;600&display=swap">
 <style>
-:root{--bg:#F7F5F0;--card:#FFFFFF;--ink:#1F2421;--muted:#5D625E;--line:#E4E0D6}
+:root{--bg:#F7F5F0;--card:#FFFFFF;--ink:#1F2421;--muted:#5D625E;--line:#E4E0D6;--accent:#2F5D50;--accent-ink:#FFFFFF;--soft:#EEF3F0;--warn:#8A4B12}
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 'Work Sans',system-ui,sans-serif}
-.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
-header{padding:72px 0 40px}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;margin:0}
+a{color:var(--accent)}
+button{font:inherit}
+.top{position:sticky;top:0;z-index:20;background:rgba(247,245,240,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;padding-top:12px;padding-bottom:12px}
+.top img{width:34px;height:34px}
+.top .who{font-weight:600;font-size:15px;line-height:1.2}
+.top .who span{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.top .saved{margin-left:auto;font-size:13px;color:var(--muted);white-space:nowrap}
+.bar{height:4px;background:var(--line)}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s ease}
+.steps{display:flex;gap:6px;overflow-x:auto;padding:14px 0 4px;scrollbar-width:none}
+.steps::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip.done{color:var(--accent);border-color:#BFD3CB}
+main{padding:24px 0 120px}
 .kicker{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-h1{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(36px,6vw,60px);line-height:1.08;margin:12px 0 18px;letter-spacing:-.01em}
-.lead{max-width:680px;margin:0;color:var(--muted);font-size:19px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px;padding:24px 0 48px}
-.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease}
-.card:hover,.card:focus-visible{transform:translateY(-3px);box-shadow:0 14px 34px rgba(31,36,33,.12)}
-.card:focus-visible{outline:3px solid #1F4FA3;outline-offset:3px}
+.step-h{font-size:clamp(30px,6vw,42px);margin:8px 0 10px}
+.lead{color:var(--muted);margin:0 0 28px;font-size:18px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin:0 0 14px}
+.q[hidden]{display:none}
+.q>label,.q legend{display:block;font-weight:600;font-size:17px;margin:0 0 4px;padding:0}
+.q fieldset{border:0;margin:0;padding:0;min-width:0}
+.help{color:var(--muted);font-size:15px;margin:0 0 12px}
+.q .opt-list{margin-top:10px}
+input[type=text],input[type=email],input[type=url],input[type=tel],textarea,select{width:100%;font:inherit;color:inherit;background:#FCFBF8;border:1px solid #D6D1C4;border-radius:10px;padding:12px 14px;margin-top:8px}
+textarea{min-height:110px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:3px solid #BFD3CB;border-color:var(--accent)}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0 0;cursor:pointer;min-height:48px}
+.opt:hover{border-color:#C9C3B4}
+.opt input{margin:4px 0 0;width:20px;height:20px;accent-color:var(--accent);flex:none}
+.opt.sel{border-color:var(--accent);background:var(--soft)}
+.opt small{display:block;color:var(--muted);font-size:14px}
+.other{margin-left:44px;width:calc(100% - 44px)!important}
+.scale{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.scale label{flex:1;min-width:52px;text-align:center;border:1px solid var(--line);border-radius:10px;padding:10px 4px;cursor:pointer;font-weight:600}
+.scale label.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+.scale input{position:absolute;opacity:0;pointer-events:none}
+.scale-ends{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:6px}
+.note{background:var(--soft);border-radius:12px;padding:14px 16px;margin:0 0 18px;font-size:15px}
+.note.warn{background:#FBF1E6;color:#5C3410}
+.intro p{margin:0 0 14px}
+.intro ul{margin:0 0 14px;padding-left:20px}
+.designs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:12px}
+.dcard{border:2px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.dcard.fav{border-color:var(--accent);box-shadow:0 0 0 3px #BFD3CB}
+.dcard.second{border-color:#8FA79D}
 .thumb{position:relative;aspect-ratio:16/11;overflow:hidden;background:#EEE;border-bottom:1px solid var(--line)}
 .thumb iframe{position:absolute;top:0;left:0;width:1280px;height:880px;border:0;transform-origin:0 0;pointer-events:none}
-.info{padding:20px 22px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
-.num{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.dot{width:12px;height:12px;border-radius:50%}
-h2{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:26px;margin:0}
-.info p{margin:0;color:var(--muted);font-size:16px}
-.open{margin-top:auto;padding-top:12px;font-weight:600}
-.notes{border-top:1px solid var(--line);padding:40px 0 64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px}
-.notes h3{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:21px;margin:0 0 8px}
-.notes p,.notes li{color:var(--muted);font-size:16px;margin:0}
-.notes ul{margin:0;padding-left:20px}
-footer{padding:0 0 48px;color:var(--muted);font-size:14px}
-@media (max-width:600px){.wrap{padding:0 16px}header{padding:48px 0 24px}.grid{grid-template-columns:1fr}}
+.dinfo{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.dname{display:flex;align-items:center;gap:8px;font-weight:600}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.dinfo small{color:var(--muted);font-size:14px;line-height:1.4}
+.dbtns{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.dbtn{flex:1;border:1px solid #CFC9BA;background:#fff;border-radius:8px;padding:8px 6px;font-size:14px;font-weight:600;cursor:pointer;min-height:40px;color:var(--ink)}
+.dbtn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.dopen{font-size:14px;font-weight:600}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.96);border-top:1px solid var(--line)}
+.nav .wrap{display:flex;gap:10px;align-items:center;padding-top:12px;padding-bottom:12px}
+.btn{border:0;border-radius:10px;padding:13px 22px;font-weight:600;cursor:pointer;min-height:48px;font-size:16px}
+.btn.pri{background:var(--accent);color:var(--accent-ink);margin-left:auto}
+.btn.pri:hover{background:#244A3F}
+.btn.sec{background:transparent;color:var(--ink);border:1px solid #CFC9BA}
+.btn:focus-visible,.chip:focus-visible,.dbtn:focus-visible{outline:3px solid #8FB8A9;outline-offset:2px}
+.btn[disabled]{opacity:.5;cursor:default}
+.count{font-size:13px;color:var(--muted)}
+.review-sec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:0 0 14px}
+.review-sec h3{font-size:21px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.review-sec h3 button{font-family:'Work Sans',sans-serif;font-size:14px;font-weight:600;background:none;border:0;color:var(--accent);cursor:pointer;padding:6px}
+.review-sec dl{margin:10px 0 0}
+.review-sec dt{font-size:14px;color:var(--muted);margin-top:10px}
+.review-sec dd{margin:2px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.empty{color:#A09A8C;font-style:italic}
+.files{margin-top:10px;font-size:15px}
+.files li{margin:4px 0}
+.done-box{text-align:center;padding:40px 0}
+.done-box h1{font-size:clamp(34px,7vw,52px);margin:0 0 14px}
+.spinner{display:inline-block;width:18px;height:18px;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite;vertical-align:-3px;margin-right:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+@media (max-width:520px){.q{padding:16px}.btn{padding:12px 16px}.top .saved{display:none}}
 </style>
 </head>
 <body>
+<header class="top">
 <div class="wrap">
-<header>
-<div class="kicker">Derryn Holliday Biokineticist · website concepts</div>
-<h1>Five ideas for your new website</h1>
-<p class="lead">Have a scroll through each one on your phone or laptop and see which feels right. They're rough drafts, so don't worry about the details yet.</p>
+<img src="images/logo.webp" alt="" width="34" height="34">
+<div class="who">Your new website<span>Questions for Derryn, from Jandre</span></div>
+<div class="saved" id="saved" aria-live="polite"></div>
+</div>
+<div class="bar"><i id="bar"></i></div>
+<div class="wrap"><nav class="steps" id="chips" aria-label="Sections"></nav></div>
 </header>
 
-<main class="grid">
-<a class="card" href="1-clinical-calm.html">
-<div class="thumb"><iframe src="1-clinical-calm.html" title="Preview of Clinical Calm" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>
-<div class="info"><div class="num"><span class="dot" style="background:#0B5F63"></span>Design 1</div><h2>Clinical Calm</h2><p>White and teal. Clean and clinical, like a modern practice.</p><span class="open" style="color:#0B5F63">Open design 1 &rarr;</span></div>
-</a>
-<a class="card" href="2-fynbos-editorial.html">
-<div class="thumb"><iframe src="2-fynbos-editorial.html" title="Preview of Fynbos Editorial" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>
-<div class="info"><div class="num"><span class="dot" style="background:#55663A"></span>Design 2</div><h2>Fynbos Editorial</h2><p>Cream and olive. Calm and personal, with a Stellenbosch feel.</p><span class="open" style="color:#55663A">Open design 2 &rarr;</span></div>
-</a>
-<a class="card" href="3-bold-movement.html">
-<div class="thumb"><iframe src="3-bold-movement.html" title="Preview of Bold Movement" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>
-<div class="info"><div class="num"><span class="dot" style="background:#FF6B2C"></span>Design 3</div><h2>Bold Movement</h2><p>Dark and orange. Sporty, aimed at active people and school and varsity athletes.</p><span class="open" style="color:#C24A12">Open design 3 &rarr;</span></div>
-</a>
-<a class="card" href="4-warm-and-welcoming.html">
-<div class="thumb"><iframe src="4-warm-and-welcoming.html" title="Preview of Warm and Welcoming" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>
-<div class="info"><div class="num"><span class="dot" style="background:#B4472A"></span>Design 4</div><h2>Warm and Welcoming</h2><p>Bigger text, warm colours and a simple "first visit" section. Good for older patients.</p><span class="open" style="color:#B4472A">Open design 4 &rarr;</span></div>
-</a>
-<a class="card" href="5-two-front-doors.html">
-<div class="thumb"><iframe src="5-two-front-doors.html" title="Preview of Two Front Doors" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>
-<div class="info"><div class="num"><span class="dot" style="background:#1F4FA3"></span>Design 5</div><h2>Two Front Doors</h2><p>Navy and blue. Separate sections for patients and for doctors and physios who refer to you.</p><span class="open" style="color:#1F4FA3">Open design 5 &rarr;</span></div>
-</a>
-</main>
+<main class="wrap" id="main"></main>
 
-<section class="notes">
-<div><h3>While you look</h3><p>Which one feels most like you? We can mix and match, like the layout of one with the colours of another.</p></div>
-<div><h3>Good to know</h3><ul><li>The photos and logo are from your current site. Grey boxes need more photos.</li><li>Anything in [square brackets] is a detail I still need from you.</li><li>Buttons and links don't all work yet.</li></ul></div>
-<div><h3>Questions for Monday</h3><ul><li>Which patients would you like to see more of?</li><li>Do doctors or physios refer to you often?</li><li>Any colours you love, or want to avoid?</li></ul></div>
-</section>
-
-<footer>Prepared by Jandre for Derryn Holliday · concept designs, October 2026</footer>
+<div class="nav" id="nav">
+<div class="wrap">
+<button class="btn sec" id="back" type="button">Back</button>
+<span class="count" id="count"></span>
+<button class="btn pri" id="next" type="button">Next</button>
 </div>
+</div>
+
 <script>
-// Scale each 1280px-wide preview to fit its card.
-function fit(){document.querySelectorAll('.thumb').forEach(function(t){var f=t.querySelector('iframe');f.style.transform='scale('+(t.clientWidth/1280)+')';});}
-window.addEventListener('resize',fit);fit();
+// Paste the Google Apps Script web app URL here (see setup/README.md).
+var ENDPOINT = '';
+
+var STORE = 'dh-website-brief-v1';
+var MAX_FILE_MB = 10;
+
+var DESIGNS = [
+  {id:'1', file:'1-clinical-calm.html', name:'Clinical Calm', color:'#0B5F63', blurb:'White and teal. Clean and clinical, like a modern practice.'},
+  {id:'2', file:'2-fynbos-editorial.html', name:'Fynbos Editorial', color:'#55663A', blurb:'Cream and olive. Calm and personal, with a Stellenbosch feel.'},
+  {id:'3', file:'3-bold-movement.html', name:'Bold Movement', color:'#FF6B2C', blurb:'Dark and orange. Sporty, for active people and athletes.'},
+  {id:'4', file:'4-warm-and-welcoming.html', name:'Warm and Welcoming', color:'#B4472A', blurb:'Bigger text and warm colours. Good for older patients.'},
+  {id:'5', file:'5-two-front-doors.html', name:'Two Front Doors', color:'#1F4FA3', blurb:'Navy and blue. Separate paths for patients and referring doctors.'}
+];
+var DESIGN_NAMES = DESIGNS.map(function(d){return 'Design '+d.id+': '+d.name;});
+var YNU = ['Yes','No','Not sure'];
+
+// Question types: text, email, url, tel, textarea, radio, checks, scale, select, designs, files.
+// "other: true" adds an "Other" option with a text box. "show" decides whether a question appears.
+var STEPS = [
+{id:'welcome', chip:'Start', title:'Hi Derryn', intro:
+  '<p>Thanks for doing this. Your answers give me everything I need to build your new website.</p>'+
+  '<ul><li>It takes about 30 to 45 minutes. You don\'t have to do it all at once.</li>'+
+  '<li>Your answers save on this device as you go. Come back to this link on the same phone or computer to carry on.</li>'+
+  '<li>Skip anything you\'re not sure about. We can chat about it.</li>'+
+  '<li>Lots of answers are already filled in from your current page. Just check them.</li></ul>'+
+  '<p class="note warn" style="margin-top:6px">Please don\'t include any patient names or health details anywhere in this form.</p>',
+ qs:[
+  {k:'name', t:'text', l:'Your name', def:'Derryn Holliday'},
+  {k:'email', t:'email', l:'Your email address', h:'For website accounts and for me to send you things.'},
+  {k:'contact_pref', t:'radio', l:'Best way for me to reach you with questions?', o:['WhatsApp','Phone call','Email']},
+  {k:'contact_times', t:'text', l:'Best times to reach you?', h:'For example: weekdays after 18:00.'}
+ ]},
+
+{id:'design', chip:'Design', title:'Pick a design', lead:'Tap "Open" to see a design full size on its own page, then come back here. Choose a favourite and a second choice.',
+ qs:[
+  {k:'design', t:'designs', l:'Your favourite and second choice'},
+  {k:'design_like', t:'textarea', l:'What do you like about your favourite?', h:'Colours, layout, photos, how it feels, anything.'},
+  {k:'design_dislike', t:'textarea', l:'Anything you don\'t like about it?'},
+  {k:'design_borrow', t:'textarea', l:'Anything from the other designs you want to borrow?', h:'For example: "the colours of 2 with the first-visit steps from 4".'},
+  {k:'design_no', t:'checks', l:'Any designs you definitely don\'t want?', o:DESIGN_NAMES},
+  {k:'feel', t:'checks', l:'How should the site feel? Pick up to three.', o:['Professional and clinical','Warm and friendly','Calm and natural','Sporty and energetic','Modern and fresh','Simple and no-fuss','Personal, like meeting you'], other:true},
+  {k:'colours_love', t:'text', l:'Colours you love'},
+  {k:'colours_avoid', t:'text', l:'Colours to avoid'},
+  {k:'text_size', t:'radio', l:'Text size', o:['Normal','A bit bigger, easy for older readers to read','Not sure']}
+ ]},
+
+{id:'brand', chip:'Logo', title:'Logo and look', lead:'This is the red "dh" logo from your current website.', image:'images/logo.webp',
+ qs:[
+  {k:'logo', t:'radio', l:'What should we do with the logo?', o:['Keep it exactly as it is','Keep it, but tidy it up or change the colour to match the design','Make a new logo','Not sure, let\'s chat']},
+  {k:'logo_files', t:'radio', l:'Do you have the original logo files?', h:'A big, sharp version, ideally from whoever designed it.', o:['Yes, I can send them','No','Not sure']},
+  {k:'logo_designer', t:'text', l:'Who designed it? (optional)'},
+  {k:'sites_like', t:'textarea', l:'Any websites you like the look of?', h:'Any business, not just health. Paste links and say what you like.'},
+  {k:'sites_competitors', t:'textarea', l:'Other biokineticist or physio websites you like or don\'t like?', h:'Paste links if you have them.'},
+  {k:'brand_other', t:'textarea', l:'Anything else about how the site should look?'}
+ ]},
+
+{id:'about', chip:'About you', title:'About you', lead:'This goes on your About page. Check what\'s filled in and fix anything wrong.',
+ qs:[
+  {k:'display_name', t:'text', l:'Your name as it should appear on the site', def:'Derryn Holliday'},
+  {k:'practice_name', t:'radio', l:'What should the practice be called?', o:['Derryn Holliday Biokineticist','Derryn Holliday Biokinetics','Holliday Biokinetics'], other:true},
+  {k:'years', t:'text', l:'Years of experience', def:'26', h:'Your current page says 26. My old draft said 23. Which is right?'},
+  {k:'quals', t:'textarea', l:'Qualifications', def:'BSc Sports Science and Honours in Biokinetics, Stellenbosch University'},
+  {k:'hpcsa', t:'text', l:'HPCSA registration number', h:'Usually shown in the footer.'},
+  {k:'practice_no', t:'text', l:'Practice number (BHF)', h:'Patients sometimes need this for medical aid claims.'},
+  {k:'basa', t:'radio', l:'Are you a member of BASA (Biokinetics Association of SA)?', o:YNU},
+  {k:'uwc', t:'radio', l:'Do you lecture at UWC?', o:['Yes, currently','I used to','No']},
+  {k:'uwc_show', t:'radio', l:'Should the site mention it?', o:YNU, show:function(a){return a.uwc==='Yes, currently'||a.uwc==='I used to';}},
+  {k:'uwc_detail', t:'text', l:'What do you teach there, and since when?', show:function(a){return a.uwc==='Yes, currently'||a.uwc==='I used to';}},
+  {k:'courses', t:'textarea', l:'Extra courses, training or special interests', h:'For example: Pilates, dry needling, cardiac rehab, pregnancy exercise.'},
+  {k:'languages', t:'checks', l:'Languages you see patients in', o:['English','Afrikaans','isiXhosa'], other:true},
+  {k:'bio', t:'textarea', l:'Tell me a bit about yourself, in your own words', h:'How you got into biokinetics, how you work with patients, what you enjoy. Rough notes are fine. I\'ll tidy it up.'},
+  {k:'approach', t:'textarea', l:'What\'s a session with you like?', h:'How would you describe it to a new patient?'},
+  {k:'personal', t:'textarea', l:'Anything personal you\'re happy to share? (optional)', h:'Hobbies, sport, family, how long you\'ve lived in Stellenbosch. It makes the About page feel human.'},
+  {k:'not_on_site', t:'textarea', l:'Anything you don\'t want on the site?'}
+ ]},
+
+{id:'practice', chip:'Practice', title:'Your practice', lead:'Where and when patients can find you.',
+ qs:[
+  {k:'address', t:'textarea', l:'Address', def:'Valerida Centre, Suite 201\n21 Piet Retief St, Krigeville\nStellenbosch, 7600'},
+  {k:'directions', t:'textarea', l:'How do patients find you once they arrive?', h:'Which entrance, which floor, lift or stairs, anything confusing.'},
+  {k:'parking', t:'radio', l:'Parking', o:['Free parking at the building','Paid parking nearby','Street parking','Not much parking, plan ahead'], other:true},
+  {k:'parking_notes', t:'text', l:'Anything else about parking?'},
+  {k:'access', t:'radio', l:'Can someone in a wheelchair or on crutches get to your rooms easily?', o:['Yes, there\'s a lift or ramp','Only by stairs','Not sure']},
+  {k:'hours_week', t:'text', l:'Weekday hours', def:'Monday to Friday, 06:00 to 18:00'},
+  {k:'hours_sat', t:'radio', l:'Saturdays', o:['By appointment','Closed','Open (give times below)']},
+  {k:'hours_sat_times', t:'text', l:'Saturday times', show:function(a){return a.hours_sat==='Open (give times below)';}},
+  {k:'hours_notes', t:'text', l:'Anything else about hours?', h:'Public holidays, lunch breaks, early or late slots.'},
+  {k:'phone', t:'tel', l:'Phone number for the site', def:'083 556 2149'},
+  {k:'whatsapp_same', t:'radio', l:'Is WhatsApp on the same number?', o:['Yes','No, different number']},
+  {k:'whatsapp_no', t:'tel', l:'WhatsApp number', show:function(a){return a.whatsapp_same==='No, different number';}},
+  {k:'public_email', t:'email', l:'Email address to show on the site (optional)', h:'Or we set up a new one on your domain later.'},
+  {k:'reply_time', t:'radio', l:'How fast do you usually reply to messages?', o:['Same day','Within 1 working day','Within 2 working days']},
+  {k:'other_locations', t:'textarea', l:'Do you work anywhere else?', h:'Gyms, schools, other practices, a second venue.'}
+ ]},
+
+{id:'money', chip:'Fees', title:'Sessions, fees and medical aid', lead:'Patients look for this a lot. Show as much or as little as you like.',
+ qs:[
+  {k:'len_initial', t:'text', l:'How long is a first consultation?', h:'For example: 60 minutes.'},
+  {k:'len_follow', t:'text', l:'How long is a follow-up session?'},
+  {k:'prices_show', t:'radio', l:'Show prices on the site?', o:['Yes, show prices','Show "from" prices only','No, don\'t show prices']},
+  {k:'prices', t:'textarea', l:'Your prices', h:'Per service. Only shown if you said yes above.', show:function(a){return a.prices_show&&a.prices_show.indexOf('No')!==0;}},
+  {k:'med_claim', t:'radio', l:'How does medical aid work at your practice?', o:['I claim from medical aid directly','Patients pay me and claim back themselves','It depends on the scheme'], other:true},
+  {k:'med_schemes', t:'textarea', l:'Schemes you work with, or any notes about specific schemes', h:'For example: Discovery, GEMS, Bonitas, Momentum.'},
+  {k:'payment', t:'checks', l:'How can patients pay?', o:['Card','EFT','Cash','SnapScan or Zapper','Through AppointmentGuru'], other:true},
+  {k:'cancel_policy', t:'textarea', l:'Cancellation policy', h:'For example: 24 hours notice or the session is charged.'},
+  {k:'cancel_show', t:'radio', l:'Show the cancellation policy on the site?', o:YNU},
+  {k:'bring', t:'textarea', l:'What should patients wear or bring to the first session?', def:'Exercise clothes and trainers. Any scans, reports or surgeon\'s notes.'}
+ ]},
+
+{id:'services', chip:'Services', title:'Services', lead:'Tick everything you offer. Leave out anything you don\'t.',
+ qs:[
+  {k:'services', t:'checks', l:'Which services do you offer?', o:[
+    'Initial consultation and assessment','Follow-up sessions','Home visits','Online sessions (video)','Discovery Vitality fitness assessment','Paired sessions (two people together)','Small group classes','Pre-surgery conditioning (prehab)','Post-surgery rehab','Return-to-sport testing','Pre-season or performance testing','Corporate wellness','School or club screenings','Pregnancy and postnatal exercise','Balance and falls classes'], other:true},
+  {k:'svc_popular', t:'textarea', l:'Which services are most popular right now?'},
+  {k:'svc_grow', t:'textarea', l:'Which services do you want more of?'},
+  {k:'home_area', t:'text', l:'Which areas do you cover for home visits?', h:'For example: Stellenbosch only, up to 10 km, Somerset West.', show:function(a){return (a.services||[]).indexOf('Home visits')>-1;}},
+  {k:'online_how', t:'text', l:'Which app do you use for online sessions?', h:'Zoom, WhatsApp video, Google Meet?', show:function(a){return (a.services||[]).indexOf('Online sessions (video)')>-1;}},
+  {k:'vitality_detail', t:'textarea', l:'Tell me about your Vitality assessments', h:'What\'s included, how long it takes, how patients book, any cost.', show:function(a){return (a.services||[]).indexOf('Discovery Vitality fitness assessment')>-1;}},
+  {k:'svc_detail', t:'textarea', l:'Anything to add about any of your services?', h:'What\'s included, who it\'s for, how often people come.'},
+  {k:'studio', t:'textarea', l:'Anything special about your studio or equipment?', h:'The view, the space, specific equipment.'}
+ ]},
+
+{id:'conditions', chip:'Conditions', title:'Conditions you treat', lead:'Each condition you pick gets its own page on the site. These pages help people find you on Google.',
+ qs:[
+  {k:'conditions', t:'checks', l:'Which conditions should get their own page?', o:[
+    'Knee and ACL injuries','Back pain','Neck and shoulder pain','Hip, knee or shoulder replacement','Other surgery rehab','Sports injuries','Ankle and foot injuries','Diabetes','High blood pressure and cholesterol','Heart conditions (cardiac rehab)','Arthritis','Osteoporosis','Healthy ageing, balance and falls','Neurological (stroke, Parkinson\'s, MS)','Cancer rehab','Pregnancy and postnatal','Weight management','Posture and scoliosis','Chronic pain and fibromyalgia','Children and teenagers'], other:true},
+  {k:'cond_top', t:'textarea', l:'Your top three, in order', h:'If we start small, these get built first.'},
+  {k:'cond_no', t:'textarea', l:'Anything you don\'t treat, or always refer on?'},
+  {k:'ages', t:'checks', l:'Which age groups do you see most?', o:['Children (under 13)','Teenagers','Students and young adults','Adults','Older adults (65+)']},
+  {k:'more_of', t:'textarea', l:'What kind of patients would you like to see more of?'},
+  {k:'found_by', t:'checks', l:'How do patients find you now?', o:['Doctor referrals','Physio referrals','Surgeon referrals','Word of mouth','Google search','Google Maps','Facebook or Instagram','Medical aid or Vitality','Schools or sports clubs'], other:true},
+  {k:'athletes', t:'radio', l:'Do you work with school or university athletes?', o:['Yes, a lot','Sometimes','Not really']},
+  {k:'athletes_where', t:'textarea', l:'Which schools, clubs or teams?', h:'For example: Bloemhof, Rhenish, Paul Roos, Eikestad, Maties.', show:function(a){return a.athletes&&a.athletes!=='Not really';}}
+ ]},
+
+{id:'referrals', chip:'Referrals', title:'Doctors and physios who refer to you', lead:'The site will have a page for referring practitioners, with a referral form and an online option.',
+ qs:[
+  {k:'ref_often', t:'radio', l:'How often do you get referrals?', o:['All the time','Sometimes','Rarely']},
+  {k:'ref_from', t:'checks', l:'Who refers to you?', o:['GPs','Physiotherapists','Orthopaedic surgeons','Sports doctors','Cardiologists','Neurologists','Other biokineticists'], other:true},
+  {k:'ref_partners', t:'textarea', l:'Any practices you work with closely?', h:'Only for my information. We\'d only name them on the site with their permission.'},
+  {k:'ref_form', t:'radio', l:'Do you have a referral form already?', o:['Yes, I\'ll send it','No, please make one','Not sure']},
+  {k:'ref_info', t:'checks', l:'What do you need on a referral?', o:['Patient name and contact number','Diagnosis','Date and type of surgery','Precautions or restrictions','Medical aid details','Referring practitioner\'s details','Scans or reports attached'], other:true},
+  {k:'ref_online_to', t:'radio', l:'Where should online referrals go?', o:['My email','WhatsApp','Both']},
+  {k:'ref_email', t:'email', l:'Email address for referrals', show:function(a){return a.ref_online_to&&a.ref_online_to!=='WhatsApp';}},
+  {k:'ref_contact', t:'text', l:'How quickly do you contact a referred patient?', h:'For example: within 1 working day.'},
+  {k:'ref_reports', t:'checks', l:'When do you send reports back to the referrer?', o:['After the first assessment','At discharge','When asked','Regular progress updates']},
+  {k:'ref_other', t:'textarea', l:'Anything else doctors and physios should know?', h:'Conditions you love being referred, how to reach you for a quick chat.'}
+ ]},
+
+{id:'domain', chip:'Domain', title:'Domain name and email', lead:'Your domain is your web address, like derrynholliday.co.za. You register it in your own name so you own it. It costs roughly R100 to R200 a year for .co.za.',
+ qs:[
+  {k:'domain_pick', t:'checks', l:'Which of these do you like?', h:'Tick all you\'d be happy with. I\'ll check which ones are available.', o:['derrynholliday.co.za','derrynhollidaybiokineticist.co.za','derrynhollidaybio.co.za','hollidaybiokinetics.co.za','biokineticsstellenbosch.co.za'], other:true},
+  {k:'domain_first', t:'text', l:'Your first choice'},
+  {k:'domain_own', t:'radio', l:'Do you already own any domain names?', o:['No','Yes (write it below)','Not sure']},
+  {k:'domain_own_which', t:'text', l:'Which domain?', show:function(a){return a.domain_own==='Yes (write it below)';}},
+  {k:'email_domain', t:'radio', l:'Do you want an email address on your new domain?', h:'Like derryn@derrynholliday.co.za. This can cost extra each month, depending on the provider.', o:['Yes','No, my current email is fine','Not sure, tell me more']},
+  {k:'email_name', t:'checks', l:'Which address?', o:['derryn@','info@','admin@','bookings@'], other:true, show:function(a){return a.email_domain==='Yes';}},
+  {k:'email_current', t:'text', l:'What email do you use now, and with which provider?', h:'For example: Gmail, Outlook, Telkom.'},
+  {k:'domain_card', t:'radio', l:'Are you OK to pay for the domain and hosting with your own card?', h:'That way everything is in your name. Hosting should be free or close to it for your site.', o:['Yes','I\'d rather you pay and I pay you back','Let\'s chat']}
+ ]},
+
+{id:'online', chip:'Online', title:'Accounts, booking and Google', lead:'The bits that connect your site to the rest of the internet.',
+ qs:[
+  {k:'ag_keep', t:'radio', l:'Keep using AppointmentGuru for bookings?', o:['Yes','I\'m thinking of changing']},
+  {k:'ag_link', t:'url', l:'Your AppointmentGuru booking link', def:'https://book.appt.guru/?s=2192'},
+  {k:'ag_style', t:'radio', l:'How should booking work on the site?', o:['A "Book online" button that opens AppointmentGuru','The booking calendar shown inside the site','Both','Not sure']},
+  {k:'ag_happy', t:'textarea', l:'Anything you like or dislike about AppointmentGuru?'},
+  {k:'gbp_access', t:'radio', l:'Can you log in to your Google Maps business listing (Google Business Profile)?', o:['Yes','No, someone else set it up','I don\'t know what that is']},
+  {k:'gbp_email', t:'text', l:'Which Google account is it linked to?', show:function(a){return a.gbp_access==='Yes';}},
+  {k:'gbp_manager', t:'radio', l:'Can I be added as a manager so I can update it?', h:'Your listing is set to "Medical Center" and links to AppointmentGuru. I\'d change it to "Biokineticist" and link it to the new site. You stay the owner.', o:['Yes','I\'d rather do it myself with your help','Let\'s chat']},
+  {k:'social_fb', t:'url', l:'Facebook page link (optional)'},
+  {k:'social_ig', t:'url', l:'Instagram link (optional)'},
+  {k:'social_li', t:'url', l:'LinkedIn link (optional)'},
+  {k:'social_other', t:'text', l:'Any other profiles? (optional)'},
+  {k:'social_show', t:'radio', l:'Show your social media on the site?', o:YNU}
+ ]},
+
+{id:'pages', chip:'Pages', title:'Pages and features', lead:'What should the site have? Your package includes condition pages, a page for referring practitioners, and 6 to 8 hours for one or two extra features.',
+ qs:[
+  {k:'pages', t:'checks', l:'Which pages do you want?', o:[
+    {v:'Home'},{v:'About'},{v:'Services'},{v:'What is biokinetics?'},{v:'Conditions (one page each)'},{v:'For referring practitioners'},{v:'Fees and medical aid'},{v:'FAQ'},{v:'Contact and directions'},{v:'Book online'}], other:true},
+  {k:'features', t:'checks', l:'Pick one or two extra features', o:[
+    {v:'Vitality assessment page', d:'What it involves, how to book, what to bring.'},
+    {v:'Exercise handouts for patients', d:'A page where patients can download or view their exercises.'},
+    {v:'School and varsity athletes page', d:'For Bloemhof, Rhenish, Eikestad, Paul Roos and Maties athletes, parents and coaches.'},
+    {v:'Programme pages', d:'For example: a 6-week back programme or a healthy ageing class.'},
+    {v:'News or blog', d:'Short articles you write now and then.'},
+    {v:'Afrikaans version of the site'}
+  ], other:true},
+  {k:'handouts_have', t:'radio', l:'Do you already have exercise handouts?', o:['Yes, as PDFs or Word documents','Yes, on paper','No'], show:function(a){return (a.features||[]).indexOf('Exercise handouts for patients')>-1;}},
+  {k:'faq_real', t:'textarea', l:'What do patients ask you all the time?', h:'These become the FAQ. Add the answers if you like.'},
+  {k:'notices', t:'radio', l:'Would a notice banner be useful?', h:'For example: "Closed 20 Dec to 6 Jan". You could switch it on and off yourself.', o:YNU},
+  {k:'self_edit', t:'checks', l:'What would you like to change yourself, without me?', o:['Opening hours','Notices and closures','Services','Prices','Photos','News or blog posts','Nothing, I\'ll ask you']},
+  {k:'tech', t:'scale', l:'How comfortable are you with computers?', min:1, max:5, lo:'Not at all', hi:'Very'},
+  {k:'pages_other', t:'textarea', l:'Any other ideas for the site?'}
+ ]},
+
+{id:'photos', chip:'Photos', title:'Photos', lead:'Good photos make the biggest difference. Your portrait and the studio photo from your current site are already in the designs.',
+ qs:[
+  {k:'photo_current_ok', t:'radio', l:'Are you happy for me to keep using those two photos?', o:['Yes','Yes, but I want better ones too','No']},
+  {k:'photo_have', t:'checks', l:'Which photos do you have, or could take?', o:['A professional headshot','More photos of the studio','Photos of you working with someone (with their permission)','Photos of the building or entrance','None yet'], other:true},
+  {k:'photo_shoot', t:'radio', l:'Would you consider a short photoshoot?', h:'Even 30 minutes with a photographer, or a friend with a good phone, in the studio on a bright morning.', o:YNU},
+  {k:'photo_files', t:'files', l:'Upload photos, your logo or your referral form (optional)', h:'Up to '+MAX_FILE_MB+' MB per file. These only upload when you submit at the end. You can also WhatsApp them to me instead.'},
+  {k:'photo_whatsapp', t:'radio', l:'Or will you send them on WhatsApp?', o:['I\'ll WhatsApp them','I uploaded them here','Later']}
+ ]},
+
+{id:'wrap', chip:'Last bits', title:'Last few questions', lead:'Nearly done.',
+ qs:[
+  {k:'launch', t:'text', l:'When would you like the site to go live?', h:'Any date that matters, like a holiday or a quiet month.'},
+  {k:'reviewers', t:'text', l:'Will anyone else look at the site before it goes live?', h:'Partner, colleague, friend.'},
+  {k:'worries', t:'textarea', l:'Anything you\'re worried about with the website?'},
+  {k:'excited', t:'textarea', l:'What would make you really happy with the new site?'},
+  {k:'anything_else', t:'textarea', l:'Anything else?'}
+ ]},
+
+{id:'review', chip:'Send', title:'Check and send', review:true}
+];
+
+// ---------- state ----------
+var A = {};          // answers
+var FILES = [];      // File objects (not saved between visits)
+var cur = 0;
+var visited = {};
+
+function load(){try{var s=JSON.parse(localStorage.getItem(STORE)||'null');if(s){A=s.a||{};cur=Math.min(s.cur||0,STEPS.length-1);visited=s.visited||{};}}catch(e){}}
+function save(){
+  try{localStorage.setItem(STORE,JSON.stringify({a:A,cur:cur,visited:visited}));flash('Saved on this device');}
+  catch(e){flash('');}
+}
+var flashT;
+function flash(t){var el=document.getElementById('saved');el.textContent=t;clearTimeout(flashT);if(t)flashT=setTimeout(function(){el.textContent='';},2000);}
+
+// Prefill defaults the first time.
+function applyDefaults(){
+  STEPS.forEach(function(s){(s.qs||[]).forEach(function(q){if(q.def!==undefined&&A[q.k]===undefined)A[q.k]=q.def;});});
+}
+
+// ---------- helpers ----------
+function h(tag,attrs){
+  var el=document.createElement(tag);
+  if(attrs)for(var k in attrs){
+    if(k==='text')el.textContent=attrs[k];
+    else if(k==='html')el.innerHTML=attrs[k];
+    else if(k.slice(0,2)==='on')el.addEventListener(k.slice(2),attrs[k]);
+    else if(attrs[k]!==false&&attrs[k]!=null)el.setAttribute(k,attrs[k]===true?'':attrs[k]);
+  }
+  for(var i=2;i<arguments.length;i++){var c=arguments[i];if(c==null)continue;if(Array.isArray(c))c.forEach(function(x){if(x)el.appendChild(x);});else el.appendChild(typeof c==='string'?document.createTextNode(c):c);}
+  return el;
+}
+function optVal(o){return typeof o==='string'?o:o.v;}
+function visible(q){return !q.show||q.show(A);}
+function answered(v){return Array.isArray(v)?v.length>0:(v!==undefined&&v!==null&&String(v).trim()!=='');}
+function set(k,v){A[k]=v;save();refreshVisibility();updateCount();}
+
+// ---------- rendering ----------
+function renderChips(){
+  var c=document.getElementById('chips');c.innerHTML='';
+  STEPS.forEach(function(s,i){
+    var b=h('button',{type:'button','class':'chip'+(i===cur?' on':'')+(visited[s.id]&&i!==cur?' done':''),text:s.chip,onclick:function(){go(i);}});
+    if(i===cur)b.setAttribute('aria-current','step');
+    c.appendChild(b);
+  });
+  var on=c.querySelector('.on');if(on)on.scrollIntoView({block:'nearest',inline:'center'});
+  document.getElementById('bar').style.width=(cur/(STEPS.length-1)*100)+'%';
+}
+
+function renderQ(q){
+  var id='q_'+q.k;
+  var wrap=h('div',{'class':'q','data-k':q.k});
+  var help=q.h?h('p',{'class':'help',text:q.h}):null;
+  var t=q.t;
+  if(['text','email','url','tel'].indexOf(t)>-1){
+    var inp=h('input',{type:t,id:id,value:A[q.k]||'',autocomplete:t==='email'?'email':'off',oninput:function(e){set(q.k,e.target.value);}});
+    wrap.appendChild(h('label',{'for':id,text:q.l}));if(help)wrap.appendChild(help);wrap.appendChild(inp);
+  }else if(t==='textarea'){
+    var ta=h('textarea',{id:id,oninput:function(e){set(q.k,e.target.value);}});ta.value=A[q.k]||'';
+    wrap.appendChild(h('label',{'for':id,text:q.l}));if(help)wrap.appendChild(help);wrap.appendChild(ta);
+  }else if(t==='radio'||t==='checks'){
+    var fs=h('fieldset',null,h('legend',{text:q.l}));if(help)fs.appendChild(help);
+    var list=h('div',{'class':'opt-list'});
+    var opts=q.o.slice();if(q.other)opts.push({v:'Other',d:null,other:true});
+    var otherBox=null;
+    opts.forEach(function(o,i){
+      var v=optVal(o),d=typeof o==='object'?o.d:null;
+      var checked=t==='radio'?A[q.k]===v:(A[q.k]||[]).indexOf(v)>-1;
+      var inp=h('input',{type:t==='radio'?'radio':'checkbox',name:id,value:v,checked:checked,onchange:function(){
+        if(t==='radio'){set(q.k,v);}
+        else{var arr=(A[q.k]||[]).filter(function(x){return x!==v;});if(inp.checked)arr.push(v);set(q.k,arr);}
+        list.querySelectorAll('.opt').forEach(function(l){l.classList.toggle('sel',l.querySelector('input').checked);});
+        if(otherBox)otherBox.hidden=!(t==='radio'?A[q.k]==='Other':(A[q.k]||[]).indexOf('Other')>-1);
+      }});
+      list.appendChild(h('label',{'class':'opt'+(checked?' sel':'')},inp,h('span',null,v,d?h('small',{text:d}):null)));
+    });
+    if(q.other){
+      otherBox=h('input',{type:'text','class':'other','aria-label':q.l+': other',placeholder:'Type it here',value:A[q.k+'_other']||'',oninput:function(e){set(q.k+'_other',e.target.value);}});
+      otherBox.hidden=!(t==='radio'?A[q.k]==='Other':(A[q.k]||[]).indexOf('Other')>-1);
+      list.appendChild(otherBox);
+    }
+    fs.appendChild(list);wrap.appendChild(fs);
+  }else if(t==='scale'){
+    var fs2=h('fieldset',null,h('legend',{text:q.l}));if(help)fs2.appendChild(help);
+    var sc=h('div',{'class':'scale'});
+    for(var n=q.min;n<=q.max;n++)(function(n){
+      var inp=h('input',{type:'radio',name:id,value:n,checked:String(A[q.k])===String(n),onchange:function(){set(q.k,String(n));sc.querySelectorAll('label').forEach(function(l){l.classList.toggle('sel',l.querySelector('input').checked);});}});
+      sc.appendChild(h('label',{'class':String(A[q.k])===String(n)?'sel':''},inp,String(n)));
+    })(n);
+    fs2.appendChild(sc);fs2.appendChild(h('div',{'class':'scale-ends'},h('span',{text:q.lo}),h('span',{text:q.hi})));
+    wrap.appendChild(fs2);
+  }else if(t==='designs'){
+    wrap.appendChild(h('div',{'class':'q-title',style:'font-weight:600'},q.l));
+    var grid=h('div',{'class':'designs'});
+    DESIGNS.forEach(function(d){
+      var name='Design '+d.id+': '+d.name;
+      var card=h('div',{'class':'dcard'});
+      var fav=h('button',{type:'button','class':'dbtn','aria-pressed':'false',text:'Favourite',onclick:function(){
+        A.design_fav=A.design_fav===name?'':name;if(A.design_second===A.design_fav)A.design_second='';save();paint();updateCount();}});
+      var sec=h('button',{type:'button','class':'dbtn','aria-pressed':'false',text:'2nd choice',onclick:function(){
+        A.design_second=A.design_second===name?'':name;if(A.design_fav===A.design_second)A.design_fav='';save();paint();updateCount();}});
+      card.appendChild(h('div',{'class':'thumb'},h('iframe',{src:d.file,title:'Preview of '+d.name,loading:'lazy',tabindex:'-1','aria-hidden':'true'})));
+      card.appendChild(h('div',{'class':'dinfo'},
+        h('div',{'class':'dname'},h('span',{'class':'dot',style:'background:'+d.color}),name),
+        h('small',{text:d.blurb}),
+        h('a',{'class':'dopen',href:d.file,target:'_blank',rel:'noopener',text:'Open full size'}),
+        h('div',{'class':'dbtns'},fav,sec)));
+      card._p=[name,fav,sec];
+      grid.appendChild(card);
+    });
+    function paint(){grid.querySelectorAll('.dcard').forEach(function(c){
+      var n=c._p[0];var f=A.design_fav===n,s=A.design_second===n;
+      c.classList.toggle('fav',f);c.classList.toggle('second',s);
+      c._p[1].classList.toggle('on',f);c._p[1].setAttribute('aria-pressed',f);c._p[1].textContent=f?'Favourite ✓':'Favourite';
+      c._p[2].classList.toggle('on',s);c._p[2].setAttribute('aria-pressed',s);c._p[2].textContent=s?'2nd choice ✓':'2nd choice';
+    });}
+    paint();wrap.appendChild(grid);
+    wrap.appendChild(h('p',{'class':'help',style:'margin:12px 0 0'},'Prefer the big overview? ',h('a',{href:'designs.html',target:'_blank',rel:'noopener',text:'See all five designs on one page'}),'.'));
+  }else if(t==='files'){
+    wrap.appendChild(h('label',{'for':id,text:q.l}));if(help)wrap.appendChild(help);
+    var list2=h('ul',{'class':'files'});
+    var fi=h('input',{type:'file',id:id,multiple:true,accept:'image/*,.pdf,.doc,.docx,.ai,.eps,.svg',onchange:function(){
+      Array.prototype.forEach.call(fi.files,function(f){
+        if(f.size>MAX_FILE_MB*1024*1024){alertMsg(f.name+' is bigger than '+MAX_FILE_MB+' MB. Please WhatsApp it instead.');return;}
+        FILES.push(f);
+      });
+      fi.value='';drawFiles();updateCount();
+    }});
+    function drawFiles(){list2.innerHTML='';FILES.forEach(function(f,i){list2.appendChild(h('li',null,f.name+' ('+(f.size/1048576).toFixed(1)+' MB) ',h('button',{type:'button','class':'dbtn',style:'flex:none;min-height:32px;padding:4px 10px',text:'Remove',onclick:function(){FILES.splice(i,1);drawFiles();}})));});}
+    wrap.appendChild(h('input',{type:'hidden'}));wrap.appendChild(fi);wrap.appendChild(list2);drawFiles();
+  }
+  return wrap;
+}
+
+function alertMsg(t){var m=document.getElementById('main');var n=h('p',{'class':'note warn',role:'alert',text:t});m.insertBefore(n,m.firstChild);setTimeout(function(){n.remove();},6000);}
+
+function refreshVisibility(){
+  var s=STEPS[cur];if(!s.qs)return;
+  s.qs.forEach(function(q){var el=document.querySelector('.q[data-k="'+q.k+'"]');if(el)el.hidden=!visible(q);});
+}
+
+function stepCounts(s){
+  var total=0,done=0;
+  (s.qs||[]).forEach(function(q){if(!visible(q))return;total++;
+    if(q.t==='designs'){if(A.design_fav)done++;}
+    else if(q.t==='files'){if(FILES.length)done++;}
+    else if(answered(A[q.k]))done++;});
+  return {total:total,done:done};
+}
+function updateCount(){
+  var s=STEPS[cur],el=document.getElementById('count');
+  if(!s.qs){el.textContent='';return;}
+  var c=stepCounts(s);el.textContent=c.done+' of '+c.total+' answered';
+}
+
+function render(){
+  var s=STEPS[cur],m=document.getElementById('main');m.innerHTML='';
+  visited[s.id]=true;
+  var head=h('div',null,h('div',{'class':'kicker',text:'Step '+(cur+1)+' of '+STEPS.length}),h('h1',{'class':'step-h',text:s.title}));
+  m.appendChild(head);
+  if(s.intro)m.appendChild(h('div',{'class':'intro lead',html:s.intro}));
+  if(s.lead)m.appendChild(h('p',{'class':'lead',text:s.lead}));
+  if(s.image)m.appendChild(h('img',{src:s.image,alt:'Current logo',width:96,height:96,style:'display:block;margin:-8px 0 22px'}));
+  if(s.review)renderReview(m);
+  else s.qs.forEach(function(q){var el=renderQ(q);el.hidden=!visible(q);m.appendChild(el);});
+  renderChips();updateCount();
+  document.getElementById('back').style.visibility=cur===0?'hidden':'visible';
+  var nx=document.getElementById('next');
+  nx.textContent=s.review?'Send to Jandre':(cur===0?'Let\'s start':'Next');
+  nx.onclick=s.review?submit:function(){go(cur+1);};
+  fitThumbs();
+}
+
+function go(i){if(i<0||i>=STEPS.length)return;cur=i;save();render();window.scrollTo(0,0);var hd=document.querySelector('.step-h');if(hd){hd.setAttribute('tabindex','-1');hd.focus({preventScroll:true});}}
+
+// ---------- review ----------
+function fmt(q){
+  var v=A[q.k];
+  if(q.t==='designs')return (A.design_fav?'Favourite: '+A.design_fav:'')+(A.design_second?'\nSecond choice: '+A.design_second:'');
+  if(q.t==='files')return FILES.map(function(f){return f.name;}).join(', ');
+  if(Array.isArray(v)){var arr=v.map(function(x){return x==='Other'&&A[q.k+'_other']?'Other: '+A[q.k+'_other']:x;});return arr.join(', ');}
+  if(v==='Other'&&A[q.k+'_other'])return 'Other: '+A[q.k+'_other'];
+  return v==null?'':String(v);
+}
+function collect(){
+  var items=[];
+  STEPS.forEach(function(s){(s.qs||[]).forEach(function(q){if(!visible(q))return;items.push({section:s.title,key:q.k,question:q.l,answer:fmt(q)});});});
+  return items;
+}
+function renderReview(m){
+  var items=collect(),blank=items.filter(function(i){return !i.answer.trim();}).length;
+  m.appendChild(h('p',{'class':'lead',text:blank?'You skipped '+blank+' questions. That\'s fine, send it anyway and we\'ll fill the gaps together. Or tap "Edit" to go back.':'You answered everything. Thank you!'}));
+  STEPS.forEach(function(s,i){
+    if(!s.qs)return;
+    var dl=h('dl');
+    s.qs.forEach(function(q){if(!visible(q))return;var a=fmt(q);dl.appendChild(h('dt',{text:q.l}));dl.appendChild(h('dd',{'class':a.trim()?'':'empty',text:a.trim()?a:'Skipped'}));});
+    m.appendChild(h('section',{'class':'review-sec'},h('h3',null,s.title,h('button',{type:'button',text:'Edit',onclick:function(){go(i);}})),dl));
+  });
+  if(!ENDPOINT)m.appendChild(h('p',{'class':'note warn',text:'Sending isn\'t switched on yet. Tap the button below to download your answers as a file, then WhatsApp or email it to Jandre.'}));
+}
+
+// ---------- submit ----------
+function payload(){
+  return {submissionId:new Date().toISOString().replace(/[:.]/g,'-')+'-'+Math.random().toString(36).slice(2,7),
+    submittedAt:new Date().toISOString(),userAgent:navigator.userAgent,answers:A,items:collect(),
+    files:FILES.map(function(f){return f.name;})};
+}
+function download(p){
+  var lines=['Website questions for Derryn Holliday','Sent: '+new Date().toLocaleString('en-ZA'),''];var sec='';
+  p.items.forEach(function(i){if(i.section!==sec){sec=i.section;lines.push('','== '+sec+' ==');}lines.push(i.question,'  '+(i.answer||'(skipped)'));});
+  var blob=new Blob([lines.join('\n')],{type:'text/plain'});var a=h('a',{href:URL.createObjectURL(blob),download:'derryn-website-answers.txt'});
+  document.body.appendChild(a);a.click();a.remove();
+}
+function readB64(f){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res(String(r.result).split(',')[1]);};r.onerror=rej;r.readAsDataURL(f);});}
+function post(obj){return fetch(ENDPOINT,{method:'POST',body:JSON.stringify(obj)}).then(function(r){return r.json();}).then(function(j){if(!j.ok)throw new Error(j.error||'Failed');return j;});}
+
+function submit(){
+  var p=payload(),btn=document.getElementById('next');
+  if(!ENDPOINT){download(p);done(false);return;}
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Sending';
+  post({action:'submit',data:p}).then(function(){
+    var chain=Promise.resolve(),n=0;
+    FILES.forEach(function(f){chain=chain.then(function(){n++;btn.innerHTML='<span class="spinner"></span>Uploading '+n+' of '+FILES.length;return readB64(f);})
+      .then(function(b64){return post({action:'upload',submissionId:p.submissionId,name:f.name,type:f.type||'application/octet-stream',data:b64});});});
+    return chain;
+  }).then(function(){done(true);}).catch(function(e){
+    btn.disabled=false;btn.textContent='Try again';
+    var m=document.getElementById('main');
+    m.appendChild(h('p',{'class':'note warn',role:'alert'},'Something went wrong sending your answers ('+e.message+'). They\'re still saved on this device. ',h('a',{href:'#',text:'Download them as a file',onclick:function(ev){ev.preventDefault();download(p);}}),' and WhatsApp it to Jandre.'));
+  });
+}
+function done(sent){
+  try{var s=JSON.parse(localStorage.getItem(STORE)||'{}');s.sent=new Date().toISOString();localStorage.setItem(STORE,JSON.stringify(s));}catch(e){}
+  document.getElementById('nav').hidden=true;
+  var m=document.getElementById('main');m.innerHTML='';
+  m.appendChild(h('div',{'class':'done-box'},h('h1',{text:'Thank you, Derryn!'}),
+    h('p',{'class':'lead',text:sent?'Your answers are with me. I\'ll go through them and WhatsApp you if anything is unclear.':'Your answers downloaded as a file. Please WhatsApp or email it to me.'}),
+    h('p',null,h('a',{href:'#',text:'Go back and change something',onclick:function(e){e.preventDefault();document.getElementById('nav').hidden=false;render();}}))));
+}
+
+// ---------- thumbnails ----------
+function fitThumbs(){document.querySelectorAll('.thumb').forEach(function(t){var f=t.querySelector('iframe');if(f)f.style.transform='scale('+(t.clientWidth/1280)+')';});}
+window.addEventListener('resize',fitThumbs);
+
+document.getElementById('back').onclick=function(){go(cur-1);};
+load();applyDefaults();render();
 </script>
 </body>
 </html>

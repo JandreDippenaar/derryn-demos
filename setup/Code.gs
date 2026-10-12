@@ -57,7 +57,7 @@ function saveSubmission(p) {
 
   if (NOTIFY) {
     var body = 'New answers from ' + ((p.answers && p.answers.name) || 'Derryn') + '.\n\n' +
-      'Favourite design: ' + ((p.answers && p.answers.design_fav) || 'not picked') + '\n' +
+      'Top design: ' + ((p.answers && p.answers.design_rank && p.answers.design_rank[0]) || 'not ranked') + '\n' +
       'Files to follow: ' + ((p.files || []).length) + '\n\n' +
       'Open the sheet: ' + ss.getUrl() + '#gid=' + rd.getSheetId();
     MailApp.sendEmail(Session.getEffectiveUser().getEmail(), 'Derryn website questionnaire submitted', body);

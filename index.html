@@ -341,7 +341,7 @@ function renderQ(q){
     var moveRank=function(n,dir){var i=order.indexOf(n),j=i+dir;if(j<0||j>=order.length)return;order.splice(i,1);order.splice(j,0,n);paintRank();commitRank();cards[n].scrollIntoView({block:'nearest'});};
     DESIGNS.forEach(function(d,i){
       var name=DESIGN_NAMES[i],lk='design_like_'+d.id;
-      var ta=h('textarea',{'aria-label':'What you like about '+d.name,placeholder:'What do you like about this one? Colours, layout, photos, anything.',oninput:function(e){set(lk,e.target.value);}});ta.value=A[lk]||'';
+      var ta=h('textarea',{'aria-label':'What you like about '+d.name,placeholder:'What do you like about this one?',oninput:function(e){set(lk,e.target.value);}});ta.value=A[lk]||'';
       var num=h('span',{'class':'rnum'});
       var grip=h('button',{type:'button','class':'grip','aria-label':'Drag to move '+d.name,html:'<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><circle cx="7" cy="4" r="1.7"/><circle cx="13" cy="4" r="1.7"/><circle cx="7" cy="10" r="1.7"/><circle cx="13" cy="10" r="1.7"/><circle cx="7" cy="16" r="1.7"/><circle cx="13" cy="16" r="1.7"/></svg>'});
       var up=h('button',{type:'button','class':'rmove','aria-label':'Move '+d.name+' up',text:'\u2191',onclick:function(){moveRank(name,-1);}});

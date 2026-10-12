@@ -152,12 +152,11 @@ var DESIGN_NAMES = DESIGNS.map(function(d){return 'Design '+d.id+': '+d.name;});
 // "other: true" adds an "Other" option with a text box. "show" decides whether a question appears.
 var STEPS = [
 {id:'welcome', chip:'Start', title:'Hi Derryn', intro:
-  '<p>Thanks for doing this. Your answers give me what I need to build your new website.</p>'+
+  '<p>Thanks for your time! Your answers will help get the ball rolling for building your new website.</p>'+
   '<ul><li>It takes about 10 to 15 minutes. Most questions are just a tap.</li>'+
   '<li>Your answers save on this device as you go, so you can stop and carry on later.</li>'+
   '<li>Skip anything you\'re not sure about. We can chat about it.</li>'+
-  '<li>Some answers are already filled in from your current page. Just check them.</li></ul>'+
-  '<p class="note warn" style="margin-top:6px">Please don\'t include any patient names or health details in this form.</p>',
+  '<li>Some answers are already filled in from your current page. Just check them.</li></ul>',
  qs:[
   {k:'name', t:'text', l:'Your name', def:'Derryn Holliday'},
   {k:'contact_pref', t:'radio', l:'Best way for me to reach you with questions?', o:['WhatsApp','Phone call','Email']}

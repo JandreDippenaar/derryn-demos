@@ -74,6 +74,8 @@ input:focus,textarea:focus,select:focus{outline:3px solid #BFD3CB;border-color:v
 .dragging .grip{cursor:grabbing}
 .rmove{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;width:36px;height:32px;cursor:pointer;font-size:15px;line-height:1}
 .rmove[disabled]{opacity:.35;cursor:default}
+.thumb{position:relative;aspect-ratio:16/11;overflow:hidden;background:#EEE}
+.thumb iframe{position:absolute;top:0;left:0;width:1280px;height:880px;border:0;transform-origin:0 0;pointer-events:none}
 .rcard .thumb{display:block;border:1px solid var(--line);border-radius:8px}
 .rinfo{display:flex;flex-direction:column;gap:6px;min-width:0}
 .rinfo small{color:var(--muted);font-size:14px;line-height:1.4}

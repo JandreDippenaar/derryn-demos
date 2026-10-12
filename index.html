@@ -64,11 +64,11 @@ input:focus,textarea:focus,select:focus{outline:3px solid #BFD3CB;border-color:v
 .dbtn{border:1px solid #CFC9BA;background:#fff;border-radius:8px;padding:8px 6px;font-size:14px;font-weight:600;cursor:pointer;min-height:40px;color:var(--ink)}
 .rank{display:flex;flex-direction:column;gap:12px;margin-top:4px}
 .rcard{display:grid;grid-template-columns:44px 220px minmax(0,1fr);gap:14px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;transition:box-shadow .15s,border-color .15s}
-.rcard.top{border-color:var(--accent);box-shadow:0 0 0 3px #BFD3CB}
+.rcard.first{border-color:var(--accent);box-shadow:0 0 0 3px #BFD3CB}
 .rcard.dragging{position:relative;z-index:3;border-color:var(--accent);box-shadow:0 14px 34px rgba(31,36,33,.2)}
 .rside{display:flex;flex-direction:column;align-items:center;gap:4px}
 .rnum{width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;font-size:15px;display:grid;place-items:center}
-.rcard.top .rnum{background:var(--accent)}
+.rcard.first .rnum{background:var(--accent)}
 .grip{touch-action:none;cursor:grab;border:0;background:none;color:var(--muted);border-radius:8px;min-width:40px;min-height:40px;display:grid;place-items:center}
 .grip:hover{background:var(--soft);color:var(--ink)}
 .dragging .grip{cursor:grabbing}
@@ -336,7 +336,7 @@ function renderQ(q){
     wrap.appendChild(h('div',{style:'font-weight:600'},q.l));
     wrap.appendChild(h('p',{'class':'help'},'Drag the dotted handle, or use the arrows. Number 1 is your favourite.'));
     var rl=h('div',{'class':'rank'}),cards={};
-    var paintRank=function(){order.forEach(function(n,i){var c=cards[n];c.style.order=i;c._num.textContent=i+1;c.classList.toggle('top',i===0);c._up.disabled=i===0;c._down.disabled=i===order.length-1;});};
+    var paintRank=function(){order.forEach(function(n,i){var c=cards[n];c.style.order=i;c._num.textContent=i+1;c.classList.toggle('first',i===0);c._up.disabled=i===0;c._down.disabled=i===order.length-1;});};
     var commitRank=function(){A.design_rank=order.slice();save();updateCount();};
     var moveRank=function(n,dir){var i=order.indexOf(n),j=i+dir;if(j<0||j>=order.length)return;order.splice(i,1);order.splice(j,0,n);paintRank();commitRank();cards[n].scrollIntoView({block:'nearest'});};
     DESIGNS.forEach(function(d,i){

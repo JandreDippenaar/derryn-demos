@@ -199,8 +199,7 @@ var STEPS = [
  qs:[
   {k:'services', t:'checks', l:'Which services do you offer?', o:['Assessment and rehab sessions','Home visits','Online sessions (video)','Discovery Vitality assessments','Paired sessions','Small group classes','Return-to-sport testing','School or club screenings'], other:true},
   {k:'home_area', t:'text', l:'Which areas do you cover for home visits?', h:'For example: Stellenbosch only, or up to 10 km.', show:function(a){return (a.services||[]).indexOf('Home visits')>-1;}},
-  {k:'conditions', t:'checks', l:'Which conditions should potentially get their own page on your site?', o:['Knee and ACL injuries','Back and neck pain','Joint replacements','Other surgery rehab','Sports injuries','Diabetes','Heart and blood pressure','Arthritis','Osteoporosis','Healthy ageing and falls','Neurological (stroke, Parkinson\'s, MS)','Pregnancy and postnatal'], other:true},
-  {k:'cond_top', t:'text', l:'Your top three, in order', h:'These pages get built first.'}
+  {k:'conditions', t:'checks', l:'Which conditions should potentially get their own page on your site?', o:['Knee and ACL injuries','Back and neck pain','Joint replacements','Other surgery rehab','Sports injuries','Diabetes','Heart and blood pressure','Arthritis','Osteoporosis','Healthy ageing and falls','Neurological (stroke, Parkinson\'s, MS)','Pregnancy and postnatal'], other:true}
  ]},
 
 {id:'referrals', chip:'Referrals', title:'Doctors and physios', lead:'The site will have a page for practitioners who refer to you.',

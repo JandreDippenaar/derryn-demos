@@ -62,14 +62,18 @@ input:focus,textarea:focus,select:focus{outline:3px solid #BFD3CB;border-color:v
 .dot{width:10px;height:10px;border-radius:50%;flex:none}
 .dopen{font-size:14px;font-weight:600}
 .dbtn{border:1px solid #CFC9BA;background:#fff;border-radius:8px;padding:8px 6px;font-size:14px;font-weight:600;cursor:pointer;min-height:40px;color:var(--ink)}
-.rank{display:flex;flex-direction:column;gap:12px;margin-top:4px}
-.rcard{display:grid;grid-template-columns:44px 220px minmax(0,1fr);gap:14px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;transition:box-shadow .15s,border-color .15s}
-.rcard.first{border-color:var(--accent);box-shadow:0 0 0 3px #BFD3CB}
-.rcard.dragging{position:relative;z-index:3;border-color:var(--accent);box-shadow:0 14px 34px rgba(31,36,33,.2)}
-.rside{display:flex;flex-direction:column;align-items:center;gap:4px}
+.rank{position:relative;display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.rcard{position:relative;display:grid;grid-template-columns:44px 220px minmax(0,1fr);gap:14px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;cursor:grab;transition:box-shadow .15s,border-color .15s}
+.rcard.dragging{z-index:5;cursor:grabbing;border-color:var(--accent);box-shadow:0 22px 44px rgba(31,36,33,.22),0 0 0 3px #BFD3CB;scale:1.02}
+.rcard.dropped{animation:dropflash 1.4s ease-out}
+@keyframes dropflash{0%{border-color:var(--accent);box-shadow:0 0 0 4px #BFD3CB}100%{border-color:var(--line);box-shadow:0 0 0 0 rgba(191,211,203,0)}}
+.favtag{margin-left:4px;background:var(--soft);color:var(--accent);border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.rside{display:flex;flex-direction:column;align-items:center;gap:4px;touch-action:none}
 .rnum{width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;font-size:15px;display:grid;place-items:center}
 .rcard.first .rnum{background:var(--accent)}
-.grip{touch-action:none;cursor:grab;border:0;background:none;color:var(--muted);border-radius:8px;min-width:40px;min-height:40px;display:grid;place-items:center}
+.grip{cursor:grab;border:0;background:none;color:var(--muted);border-radius:8px;min-width:40px;min-height:40px;display:grid;place-items:center}
 .grip:hover{background:var(--soft);color:var(--ink)}
 .dragging .grip{cursor:grabbing}
 .rmove{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;width:36px;height:32px;cursor:pointer;font-size:15px;line-height:1}
@@ -162,6 +166,7 @@ var STEPS = [
 {id:'design', chip:'Designs', title:'Rank these quick designs', lead:'These are just quick designs to give you an idea of what you might like or not like. None of them is the final site. Open each one to have a look, drag them into order with your favourite at the top, and jot down what you like about each. Mixing is fine, like the colours of one with the layout of another.',
  qs:[
   {k:'design_rank', t:'rank', l:'Your ranking'},
+  {k:'sites_like', t:'textarea', l:'Any other websites whose design you like?', h:'Paste the links and say what you like about each one. Any kind of business, not just health.'},
   {k:'logo', t:'radio', l:'Your red "dh" logo: what should we do with it?', o:['Keep it as it is','Keep it, but tidy it up or match the colours','Make a new logo','Not sure, let\'s chat']}
  ]},
 
@@ -170,6 +175,7 @@ var STEPS = [
   {k:'years', t:'text', l:'Years of experience', def:'26'},
   {k:'quals', t:'textarea', l:'Qualifications', def:'BSc Sports Science and Honours in Biokinetics, Stellenbosch University'},
   {k:'hpcsa', t:'text', l:'HPCSA registration number', h:'Usually shown in the footer.'},
+  {k:'specialties', t:'textarea', l:'Any conditions or treatments you specialise in, or want to highlight on the site?'},
   {k:'bio', t:'textarea', l:'A few lines about you, in your own words', h:'How you got into biokinetics, how you work with patients. Rough notes are fine. I\'ll tidy it up.'}
  ]},
 
@@ -321,45 +327,97 @@ function renderQ(q){
     var order=(A.design_rank||[]).filter(function(n){return DESIGN_NAMES.indexOf(n)>-1;});
     DESIGN_NAMES.forEach(function(n){if(order.indexOf(n)<0)order.push(n);});
     wrap.appendChild(h('div',{style:'font-weight:600'},q.l));
-    wrap.appendChild(h('p',{'class':'help'},'Drag the dotted handle, or use the arrows. Number 1 is your favourite.'));
-    var rl=h('div',{'class':'rank'}),cards={};
-    var paintRank=function(){order.forEach(function(n,i){var c=cards[n];c.style.order=i;c._num.textContent=i+1;c.classList.toggle('first',i===0);c._up.disabled=i===0;c._down.disabled=i===order.length-1;});};
+    wrap.appendChild(h('p',{'class':'help'},'Drag a card up or down, or use the arrows. Number 1 is your favourite.'));
+    var rl=h('div',{'class':'rank'}),cards={},live=h('p',{'class':'sr','aria-live':'polite'});
+    var EASE='transform .24s cubic-bezier(.2,.8,.2,1)';
+    var paintRank=function(){order.forEach(function(n,i){var c=cards[n];c.style.order=i;c._num.textContent=i+1;c.classList.toggle('first',i===0);c._fav.hidden=i!==0;c._up.disabled=i===0;c._down.disabled=i===order.length-1;});};
     var commitRank=function(){A.design_rank=order.slice();save();updateCount();};
-    var moveRank=function(n,dir){var i=order.indexOf(n),j=i+dir;if(j<0||j>=order.length)return;order.splice(i,1);order.splice(j,0,n);paintRank();commitRank();cards[n].scrollIntoView({block:'nearest'});};
+    var flash=function(c){c.classList.remove('dropped');void c.offsetWidth;c.classList.add('dropped');};
+    var announce=function(n){live.textContent=n+' is now number '+(order.indexOf(n)+1)+'.';};
+    // Reorder, then slide every card (except "skip") from where it was to its new slot.
+    var reorder=function(next,skip){
+      var before={};order.forEach(function(n){before[n]=cards[n].getBoundingClientRect().top;});
+      order=next;paintRank();
+      order.forEach(function(n){
+        if(n===skip)return;var c=cards[n];
+        c.style.transition='none';c.style.transform='';
+        var dy=before[n]-c.getBoundingClientRect().top;if(!dy)return;
+        c.style.transform='translateY('+dy+'px)';void c.offsetWidth;
+        c.style.transition=EASE;c.style.transform='';
+      });
+    };
+    var moveRank=function(n,dir){
+      var i=order.indexOf(n),j=i+dir;if(j<0||j>=order.length)return;
+      var next=order.slice();next.splice(i,1);next.splice(j,0,n);
+      reorder(next);commitRank();flash(cards[n]);announce(n);
+      setTimeout(function(){cards[n].scrollIntoView({block:'nearest',behavior:'smooth'});},250);
+    };
+    // Drag: the card follows the pointer, the others slide out of the way, and it settles into its slot on release.
+    var startDrag=function(card,name,e){
+      var src=e.currentTarget,startY=e.clientY,lastY=e.clientY,startScroll=window.scrollY;
+      var startTop=card.getBoundingClientRect().top+window.scrollY,startOrder=order.join('|'),dragging=false,raf=0;
+      src.setPointerCapture(e.pointerId);
+      var place=function(){
+        var want=startTop+(lastY-startY)+(window.scrollY-startScroll);
+        var centre=want-(rl.getBoundingClientRect().top+window.scrollY)+card.offsetHeight/2;
+        var others=order.filter(function(n){return n!==name;}),at=0;
+        others.forEach(function(n){var c=cards[n];if(c.offsetTop+c.offsetHeight/2<centre)at++;});
+        others.splice(at,0,name);
+        if(others.join('|')!==order.join('|'))reorder(others,name);
+        card.style.transform='none';
+        var slot=card.getBoundingClientRect().top+window.scrollY;
+        card.style.transform='translateY('+(want-slot)+'px)';
+      };
+      var loop=function(){
+        var hdr=document.querySelector('.top').getBoundingClientRect().bottom,bottom=innerHeight-90;
+        if(lastY<hdr+60)window.scrollBy(0,-Math.min(18,Math.ceil((hdr+60-lastY)/4)));
+        else if(lastY>bottom-60)window.scrollBy(0,Math.min(18,Math.ceil((lastY-bottom+60)/4)));
+        place();raf=requestAnimationFrame(loop);
+      };
+      var onMove=function(ev){
+        lastY=ev.clientY;
+        if(!dragging&&Math.abs(lastY-startY)>4){
+          dragging=true;card.style.transition='scale .15s,box-shadow .15s';
+          card.classList.add('dragging');document.body.classList.add('is-dragging');raf=requestAnimationFrame(loop);
+        }
+      };
+      var onUp=function(){
+        src.removeEventListener('pointermove',onMove);src.removeEventListener('pointerup',onUp);src.removeEventListener('pointercancel',onUp);
+        if(!dragging)return;
+        cancelAnimationFrame(raf);document.body.classList.remove('is-dragging');card.classList.remove('dragging');
+        card.style.transition=EASE+',scale .15s,box-shadow .15s';card.style.transform='';
+        flash(card);
+        if(order.join('|')!==startOrder){commitRank();announce(name);}
+      };
+      src.addEventListener('pointermove',onMove);src.addEventListener('pointerup',onUp);src.addEventListener('pointercancel',onUp);
+    };
     DESIGNS.forEach(function(d,i){
       var name=DESIGN_NAMES[i],lk='design_like_'+d.id;
       var ta=h('textarea',{'aria-label':'What you like about '+d.name,placeholder:'What do you like about this one?',oninput:function(e){set(lk,e.target.value);}});ta.value=A[lk]||'';
       var num=h('span',{'class':'rnum'});
-      var grip=h('button',{type:'button','class':'grip','aria-label':'Drag to move '+d.name,html:'<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><circle cx="7" cy="4" r="1.7"/><circle cx="13" cy="4" r="1.7"/><circle cx="7" cy="10" r="1.7"/><circle cx="13" cy="10" r="1.7"/><circle cx="7" cy="16" r="1.7"/><circle cx="13" cy="16" r="1.7"/></svg>'});
+      var fav=h('span',{'class':'favtag',text:'Favourite'});
+      var grip=h('button',{type:'button','class':'grip','aria-label':'Drag to move '+d.name+', or use the arrow buttons',html:'<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><circle cx="7" cy="4" r="1.7"/><circle cx="13" cy="4" r="1.7"/><circle cx="7" cy="10" r="1.7"/><circle cx="13" cy="10" r="1.7"/><circle cx="7" cy="16" r="1.7"/><circle cx="13" cy="16" r="1.7"/></svg>'});
       var up=h('button',{type:'button','class':'rmove','aria-label':'Move '+d.name+' up',text:'\u2191',onclick:function(){moveRank(name,-1);}});
       var down=h('button',{type:'button','class':'rmove','aria-label':'Move '+d.name+' down',text:'\u2193',onclick:function(){moveRank(name,1);}});
       var card=h('div',{'class':'rcard'},
         h('div',{'class':'rside'},num,grip,up,down),
         h('a',{'class':'thumb',href:d.file,target:'_blank',rel:'noopener','aria-label':'Open '+d.name+' full size'},h('iframe',{src:d.file,title:'Preview of '+d.name,loading:'lazy',tabindex:'-1','aria-hidden':'true'})),
         h('div',{'class':'rinfo'},
-          h('div',{'class':'dname'},h('span',{'class':'dot',style:'background:'+d.color}),name),
+          h('div',{'class':'dname'},h('span',{'class':'dot',style:'background:'+d.color}),name,fav),
           h('small',{text:d.blurb}),
           h('a',{'class':'dopen',href:d.file,target:'_blank',rel:'noopener',text:'Open full size'}),
           ta));
-      card._num=num;card._up=up;card._down=down;cards[name]=card;
-      // Drag by the handle. Cards are reordered with CSS order so the previews don't reload.
-      grip.addEventListener('pointerdown',function(e){
-        if(e.button!==0)return;e.preventDefault();grip.setPointerCapture(e.pointerId);
-        card.classList.add('dragging');var moved=false;
-        var onMove=function(ev){
-          var y=ev.clientY;
-          if(y<150)window.scrollBy(0,-14);else if(y>innerHeight-110)window.scrollBy(0,14);
-          var others=order.filter(function(n){return n!==name;}),at=others.length;
-          for(var k=0;k<others.length;k++){var r=cards[others[k]].getBoundingClientRect();if(y<r.top+r.height/2){at=k;break;}}
-          others.splice(at,0,name);
-          if(others.join('|')!==order.join('|')){order=others;paintRank();moved=true;}
-        };
-        var onUp=function(){grip.removeEventListener('pointermove',onMove);grip.removeEventListener('pointerup',onUp);grip.removeEventListener('pointercancel',onUp);card.classList.remove('dragging');if(moved)commitRank();};
-        grip.addEventListener('pointermove',onMove);grip.addEventListener('pointerup',onUp);grip.addEventListener('pointercancel',onUp);
+      card._num=num;card._fav=fav;card._up=up;card._down=down;cards[name]=card;
+      // Mouse: drag from anywhere on the card except the links, arrows and notes box.
+      // Touch: drag from the left column only, so the rest of the card still scrolls the page.
+      card.addEventListener('pointerdown',function(e){
+        if(e.button!==0||e.target.closest('textarea,a,.rmove'))return;
+        if(e.pointerType!=='mouse'&&!e.target.closest('.rside'))return;
+        e.preventDefault();startDrag(card,name,e);
       });
       rl.appendChild(card);
     });
-    paintRank();wrap.appendChild(rl);
+    paintRank();wrap.appendChild(rl);wrap.appendChild(live);
     wrap.appendChild(h('p',{'class':'help',style:'margin:12px 0 0'},'Prefer the big overview? ',h('a',{href:'designs.html',target:'_blank',rel:'noopener',text:'See all five designs on one page'}),'.'));
   }else if(t==='files'){
     wrap.appendChild(h('label',{'for':id,text:q.l}));if(help)wrap.appendChild(help);

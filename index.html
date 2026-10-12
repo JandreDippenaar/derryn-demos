@@ -202,13 +202,6 @@ var STEPS = [
   {k:'conditions', t:'checks', l:'Which conditions should potentially get their own page on your site?', o:['Knee and ACL injuries','Back and neck pain','Joint replacements','Other surgery rehab','Sports injuries','Diabetes','Heart and blood pressure','Arthritis','Osteoporosis','Healthy ageing and falls','Neurological (stroke, Parkinson\'s, MS)','Pregnancy and postnatal'], other:true}
  ]},
 
-{id:'referrals', chip:'Referrals', title:'Doctors and physios', lead:'The site will have a page for practitioners who refer to you.',
- qs:[
-  {k:'ref_form', t:'radio', l:'Do you have a referral form?', o:['Yes, I\'ll send it','No, please make one','I don\'t need one']},
-  {k:'ref_online_to', t:'radio', l:'Where should online referrals go?', o:['My email','WhatsApp','Both']},
-  {k:'ref_email', t:'email', l:'Email address for referrals', show:function(a){return a.ref_online_to&&a.ref_online_to!=='WhatsApp';}}
- ]},
-
 {id:'online', chip:'Online', title:'Web address and Google', lead:'Your domain is your web address. A .co.za costs roughly R100 to R200 a year, registered in your name so you own it.',
  qs:[
   {k:'domain_pick', t:'checks', l:'Which web addresses do you like?', h:'Tick any. I\'ll check which are free.', o:['derrynholliday.co.za','derrynhollidaybio.co.za','hollidaybiokinetics.co.za'], other:true},
@@ -227,7 +220,7 @@ var STEPS = [
     {v:'Afrikaans version of the site'}
   ], other:true},
   {k:'photo_current_ok', t:'radio', l:'Happy for me to use the portrait and studio photo from your current site?', o:['Yes','Yes, but I\'ll send better ones','No']},
-  {k:'photo_files', t:'files', l:'Upload photos, your logo or your referral form (optional)', h:'Up to '+MAX_FILE_MB+' MB per file. Or WhatsApp them to me.'},
+  {k:'photo_files', t:'files', l:'Upload photos or your logo (optional)', h:'Up to '+MAX_FILE_MB+' MB per file. Or WhatsApp them to me.'},
   {k:'launch', t:'text', l:'When would you like the site to go live?'},
   {k:'anything_else', t:'textarea', l:'Anything else?'}
  ]},

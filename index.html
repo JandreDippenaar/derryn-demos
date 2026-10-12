@@ -195,11 +195,11 @@ var STEPS = [
   {k:'med_claim', t:'radio', l:'How does medical aid work at your practice?', o:['I claim from medical aid directly','Patients pay me and claim back themselves','It depends on the scheme'], other:true}
  ]},
 
-{id:'services', chip:'Services', title:'Services and conditions', lead:'Tick what you offer. Each condition you pick gets its own page, which helps people find you on Google.',
+{id:'services', chip:'Services', title:'Services and conditions', lead:'Tick what you offer. Conditions can each get their own page, which helps people find you on Google.',
  qs:[
   {k:'services', t:'checks', l:'Which services do you offer?', o:['Assessment and rehab sessions','Home visits','Online sessions (video)','Discovery Vitality assessments','Paired sessions','Small group classes','Return-to-sport testing','School or club screenings'], other:true},
   {k:'home_area', t:'text', l:'Which areas do you cover for home visits?', h:'For example: Stellenbosch only, or up to 10 km.', show:function(a){return (a.services||[]).indexOf('Home visits')>-1;}},
-  {k:'conditions', t:'checks', l:'Which conditions should get their own page?', o:['Knee and ACL injuries','Back and neck pain','Joint replacements','Other surgery rehab','Sports injuries','Diabetes','Heart and blood pressure','Arthritis','Osteoporosis','Healthy ageing and falls','Neurological (stroke, Parkinson\'s, MS)','Pregnancy and postnatal'], other:true},
+  {k:'conditions', t:'checks', l:'Which conditions should potentially get their own page on your site?', o:['Knee and ACL injuries','Back and neck pain','Joint replacements','Other surgery rehab','Sports injuries','Diabetes','Heart and blood pressure','Arthritis','Osteoporosis','Healthy ageing and falls','Neurological (stroke, Parkinson\'s, MS)','Pregnancy and postnatal'], other:true},
   {k:'cond_top', t:'text', l:'Your top three, in order', h:'These pages get built first.'}
  ]},
 

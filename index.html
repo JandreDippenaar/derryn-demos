@@ -241,9 +241,10 @@ var FILES = [];      // File objects (not saved between visits)
 var cur = 0;
 var visited = {};
 
-function load(){try{var s=JSON.parse(localStorage.getItem(STORE)||'null');if(s){A=s.a||{};cur=Math.min(s.cur||0,STEPS.length-1);visited=s.visited||{};}}catch(e){}}
+var SENT=null;
+function load(){try{var s=JSON.parse(localStorage.getItem(STORE)||'null');if(s){A=s.a||{};SENT=s.sent||null;cur=Math.min(s.cur||0,STEPS.length-1);visited=s.visited||{};}}catch(e){}}
 function save(){
-  try{localStorage.setItem(STORE,JSON.stringify({a:A,cur:cur,visited:visited}));flash('Saved on this device');}
+  try{localStorage.setItem(STORE,JSON.stringify({a:A,cur:cur,visited:visited,sent:SENT}));flash('Saved on this device');}
   catch(e){flash('');}
 }
 var flashT;
@@ -473,6 +474,7 @@ function render(){
   var nx=document.getElementById('next');
   nx.textContent=s.review?'Send to Jandre':(cur===0?'Let\'s start':'Next');
   nx.onclick=s.review?submit:function(){go(cur+1);};
+  nx.disabled=false;
   fitThumbs();
 }
 
@@ -540,7 +542,7 @@ function submit(){
   });
 }
 function done(sent){
-  try{var s=JSON.parse(localStorage.getItem(STORE)||'{}');s.sent=new Date().toISOString();localStorage.setItem(STORE,JSON.stringify(s));}catch(e){}
+  SENT=new Date().toISOString();save();
   document.getElementById('nav').hidden=true;
   var m=document.getElementById('main');m.innerHTML='';
   m.appendChild(h('div',{'class':'done-box'},h('h1',{text:'Thank you, Derryn!'}),
